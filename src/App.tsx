@@ -55,33 +55,34 @@ export default function App() {
         {envelopeOpened && (
           <div className="animate-fadeIn transition-all duration-1000 w-full relative z-10 flex flex-col items-center gap-16">
             
-            {/* The Main Invitation Card using the uploaded background image (Full bleed on mobile) */}
-            <div className="w-full max-w-[600px] min-h-[100dvh] sm:min-h-screen sm:aspect-[9/16] bg-[url('/hero-bg.png')] bg-cover bg-center shadow-md relative flex flex-col justify-end pb-40 sm:pb-24 px-4 sm:px-8">
+            {/* The Main Invitation Card using a robust aspect-ratio layout */}
+            <div className="w-full max-w-[600px] relative shadow-md flex flex-col">
+              <img src="/hero-bg.png" className="w-full h-auto block" alt="Fairytale Background" />
               
               {/* Photo placed perfectly inside the golden oval frame in the background image */}
-              <div className="absolute top-[16.5%] left-1/2 -translate-x-1/2 w-[46%] aspect-[3.2/4] rounded-full overflow-hidden mix-blend-multiply border-2 border-transparent">
+              <div className="absolute top-[16.5%] left-[27%] w-[46%] aspect-[3.2/4] rounded-full overflow-hidden mix-blend-multiply border-2 border-transparent">
                 <img src="/1.jpeg" className="w-full h-full object-cover scale-110" alt="Sierra and Roy" />
               </div>
               
-              {/* Main Invitation Text (positioned at the bottom) */}
-              <div className="text-center space-y-3 z-10 mt-auto">
-                <p className="font-serif-royal italic text-purple-900 font-bold">Please join us for</p>
-                <h1 className="font-cinzel text-3xl sm:text-4xl font-black text-pink-600 drop-shadow-md">
+              {/* Main Invitation Text (positioned below the photo) */}
+              <div className="absolute top-[52%] left-0 w-full text-center space-y-2 sm:space-y-3 z-10 px-4">
+                <p className="font-serif-royal italic text-purple-900 font-bold text-sm sm:text-base">Please join us for</p>
+                <h1 className="font-cinzel text-3xl sm:text-4xl font-black text-pink-600 drop-shadow-md leading-tight">
                   SIERRA'S <span className="block text-xl sm:text-2xl mt-1 text-purple-700">FAIRY 1ST BIRTHDAY</span>
                 </h1>
                 <p className="font-serif-royal italic text-purple-900 font-bold">&</p>
-                <h1 className="font-cinzel text-xl sm:text-2xl font-bold text-amber-600 drop-shadow-md">
+                <h1 className="font-cinzel text-xl sm:text-2xl font-bold text-amber-600 drop-shadow-md leading-tight">
                   ROY'S <span className="block text-lg mt-0.5 text-purple-700">ROYAL 36TH</span>
                 </h1>
                 
-                <div className="w-full h-px bg-gradient-to-r from-transparent via-pink-400 to-transparent my-3"></div>
+                <div className="w-full max-w-[200px] mx-auto h-px bg-gradient-to-r from-transparent via-pink-400 to-transparent my-3"></div>
                 
                 <div className="text-xs sm:text-sm font-bold text-slate-800 tracking-wide uppercase font-sans leading-relaxed">
                   <p>Sunday, 13 Sept 2026</p>
                   <p>11:30 AM – 2:30 PM</p>
                 </div>
                 
-                <div className="text-[11px] sm:text-xs text-slate-700 italic mt-2">
+                <div className="text-[10px] sm:text-xs text-slate-800 italic mt-1">
                   <p className="font-bold">Spice in Valley</p>
                   <p>55 Benara Rd, Caversham</p>
                 </div>
