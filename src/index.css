@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .font-fairytale {
+    font-family: 'Dancing Script', cursive;
+  }
+  .font-cinzel {
+    font-family: 'Playfair Display', serif;
+  }
+  .font-serif-royal {
+    font-family: 'Cormorant Garamond', serif;
+  }
+}
+
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(3deg);
+  }
+}
+
+@keyframes shimmerGold {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+.animate-float-slow {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: floatSlow 7s ease-in-out 2s infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, #fce055 0%, #d4af37 50%, #f9d976 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.royal-purple-pink-gradient {
+  background: linear-gradient(135deg, #3b0764 0%, #581c87 35%, #831843 70%, #4c1d95 100%);
+}
+
+.soft-fairytale-card {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(244, 114, 182, 0.25);
+  box-shadow: 0 20px 40px -15px rgba(147, 51, 234, 0.15);
+}
+
+/* Custom Scrollbar for magical feel */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ec4899, #a855f7, #3b82f6);
+  border-radius: 9999px;
+}
+.clip-path-ribbon-left { clip-path: polygon(100% 0, 0 50%, 100% 100%); }
+.clip-path-ribbon-right { clip-path: polygon(0 0, 100% 50%, 0 100%); }

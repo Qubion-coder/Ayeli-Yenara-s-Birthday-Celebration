@@ -1,0 +1,6 @@
+{
+  "name": "Sierra & Roy's Fairytale Birthday Invitation",
+  "description": "An interactive fairytale and royal king themed digital invitation for Sierra's 1st & Roy's 36th Birthday celebration in pink, blue, and purple.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
