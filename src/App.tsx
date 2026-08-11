@@ -50,14 +50,29 @@ export default function App() {
       />
 
       {/* Main Scrapbook Wrapper */}
-      <div className="relative z-10 w-full min-h-screen bg-[url('/lower-bg.png')] bg-cover bg-center bg-fixed">
+      <div className="relative z-10 w-full min-h-screen">
+        <video 
+          src="/bag.mp4" 
+          autoPlay 
+          loop 
+          muted 
+          playsInline
+          className="fixed inset-0 w-full h-full object-cover -z-10 pointer-events-none"
+        />
         {/* Section 2: Main Invitation Card (Revealed after opening) */}
         {envelopeOpened && (
           <div className="animate-fadeIn transition-all duration-1000 w-full relative z-10 flex flex-col items-center gap-16">
             
             {/* The Main Invitation Card using a robust aspect-ratio layout */}
             <div className="w-full max-w-[600px] relative shadow-md flex flex-col">
-              <img src="/hero-bg.png" className="w-full h-auto block" alt="Fairytale Background" />
+              <video 
+                src="/hero.mp4" 
+                autoPlay 
+                loop 
+                muted 
+                playsInline
+                className="w-full h-[100dvh] sm:h-auto object-cover block" 
+              />
               
               {/* Photo placed perfectly inside the golden oval frame in the background image */}
               <div className="absolute top-[16.5%] left-[27%] w-[46%] aspect-[3.2/4] rounded-full overflow-hidden mix-blend-multiply border-2 border-transparent">

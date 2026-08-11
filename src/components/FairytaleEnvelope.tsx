@@ -58,9 +58,12 @@ export const FairytaleEnvelope: React.FC<FairytaleEnvelopeProps> = ({
           className={`fixed inset-0 z-50 w-full h-[100dvh] bg-slate-950 flex flex-col items-center justify-center cursor-pointer transition-all duration-700 ${isOpening ? 'scale-95 opacity-0 pointer-events-none' : 'opacity-100'}`} 
           onClick={handleOpenEnvelope}
         >
-          <img 
-            src="/invitation-cover.png" 
-            alt="Invitation Cover" 
+          <video 
+            src="/invitation-cover.mp4" 
+            autoPlay 
+            loop 
+            muted 
+            playsInline
             className="w-full h-full object-cover sm:object-contain sm:h-full" 
           />
           
