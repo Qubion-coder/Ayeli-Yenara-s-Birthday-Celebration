@@ -21,7 +21,7 @@ export const AudioPlayer: React.FC = () => {
 
       // Gentle attack and slow decay like a magic music box harp
       gain.gain.setValueAtTime(0, ctx.currentTime);
-      gain.gain.linearRampToValueAtTime(0.08, ctx.currentTime + 0.1);
+      gain.gain.linearRampToValueAtTime(0.2, ctx.currentTime + 0.1);
       gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 2.5);
 
       osc.connect(gain);
@@ -67,7 +67,17 @@ export const AudioPlayer: React.FC = () => {
   };
 
   useEffect(() => {
+    const handleInteraction = () => {
+      if (!audioCtxRef.current) {
+        toggleAudio();
+      }
+      ['click', 'touchstart', 'scroll'].forEach(e => window.removeEventListener(e, handleInteraction));
+    };
+
+    ['click', 'touchstart', 'scroll'].forEach(e => window.addEventListener(e, handleInteraction, { once: true }));
+
     return () => {
+      ['click', 'touchstart', 'scroll'].forEach(e => window.removeEventListener(e, handleInteraction));
       if (intervalRef.current) clearInterval(intervalRef.current);
       if (audioCtxRef.current) audioCtxRef.current.close();
     };
