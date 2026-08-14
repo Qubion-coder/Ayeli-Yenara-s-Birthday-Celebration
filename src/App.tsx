@@ -11,7 +11,7 @@ import { CountdownTimer } from './components/CountdownTimer';
 import { PartySchedule } from './components/PartySchedule';
 import { LocationMapSection } from './components/LocationMapSection';
 import { RsvpModal } from './components/RsvpModal';
-import { GuestbookWishes } from './components/GuestbookWishes';
+
 import { RoyalRegistry } from './components/RoyalRegistry';
 import { AudioPlayer } from './components/AudioPlayer';
 import { OrganizerDashboard } from './components/OrganizerDashboard';
@@ -80,14 +80,14 @@ export default function App() {
               </div>
               
               {/* Main Invitation Text (positioned below the photo) */}
-              <div className="absolute top-[52%] left-0 w-full text-center space-y-2 sm:space-y-3 z-10 px-4">
+              <div className="absolute top-[44%] sm:top-[52%] left-0 w-full text-center space-y-2 sm:space-y-3 z-10 px-4">
                 <p className="font-serif-royal italic text-purple-900 font-bold text-sm sm:text-base">Please join us for</p>
                 <h1 className="font-cinzel text-3xl sm:text-4xl font-black text-pink-600 drop-shadow-md leading-tight">
                   SIERRA'S <span className="block text-xl sm:text-2xl mt-1 text-purple-700">FAIRY 1ST BIRTHDAY</span>
                 </h1>
                 <p className="font-serif-royal italic text-purple-900 font-bold">&</p>
-                <h1 className="font-cinzel text-xl sm:text-2xl font-bold text-amber-600 drop-shadow-md leading-tight">
-                  ROY'S <span className="block text-lg mt-0.5 text-purple-700">ROYAL 36TH</span>
+                <h1 className="font-cinzel text-3xl sm:text-4xl font-bold text-amber-600 drop-shadow-md leading-tight">
+                  ROY'S <span className="block text-xl sm:text-2xl mt-1 text-purple-700">ROYAL 36TH</span>
                 </h1>
                 
                 <div className="w-full max-w-[200px] mx-auto h-px bg-gradient-to-r from-transparent via-pink-400 to-transparent my-3"></div>
@@ -105,8 +105,12 @@ export default function App() {
             </div>
 
             {/* Collage Elements Grid */}
-            <div className="w-full relative min-h-[800px] flex flex-col items-center gap-16 md:gap-24">
+            <div className="w-full relative min-h-[800px] flex flex-col items-center gap-16 md:gap-24 mt-8">
               
+              <div className="w-full px-4 relative z-10 flex justify-center">
+                 <CountdownTimer targetDate="2026-09-13T11:30:00" />
+              </div>
+
               {/* KINDLY RSVP Circle */}
               <div className="relative group cursor-pointer" onClick={() => setIsRsvpOpen(true)}>
                 <div className="w-48 h-48 rounded-full border-[6px] border-pink-300 bg-white/80 backdrop-blur-sm flex flex-col items-center justify-center shadow-lg transition-transform group-hover:scale-105 z-20 relative">
@@ -119,26 +123,13 @@ export default function App() {
                 <div className="absolute top-0 -right-6 text-2xl animate-float-slow">🦋</div>
               </div>
 
-              {/* PARTY SCHEDULE Arch */}
-              <div className="relative w-full max-w-sm">
-                <div className="absolute inset-0 border-4 border-purple-300 rounded-t-full scale-105 -z-10 bg-purple-50/50"></div>
-                <div className="w-full pt-16 pb-8 px-6 border-2 border-purple-200 rounded-t-full bg-white shadow-xl text-center">
-                  <h3 className="font-cinzel text-purple-900 text-2xl font-bold tracking-widest mb-6">PARTY<br/>SCHEDULE</h3>
-                  <div className="text-left space-y-4 px-2">
-                    <div className="flex items-start gap-3">
-                      <span className="font-bold text-pink-500 text-sm w-16">11:30</span>
-                      <p className="text-sm text-slate-700">Party begins! Welcome drinks & photos</p>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <span className="font-bold text-amber-500 text-sm w-16">1:15</span>
-                      <p className="text-sm text-slate-700">Birthday Cake & Singing</p>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <span className="font-bold text-purple-500 text-sm w-16">2:30</span>
-                      <p className="text-sm text-slate-700">Thank you & farewells</p>
-                    </div>
-                  </div>
-                </div>
+              {/* PARTY SCHEDULE Scroll */}
+              <div className="relative w-[115%] sm:w-full max-w-[500px] flex items-center justify-center mt-12 mb-4 -ml-4 sm:ml-0">
+                <img 
+                  src="/ChatGPT_Image_Aug_15__2026__03_22_39_AM-removebg-preview.png" 
+                  className="w-full h-auto object-contain drop-shadow-2xl scale-110 sm:scale-100" 
+                  alt="Party Schedule" 
+                />
               </div>
 
               {/* VIEW LOCATION Ribbon */}
@@ -153,14 +144,7 @@ export default function App() {
                 </div>
               </div>
 
-              {/* MUSHROOM GUESTBOOK */}
-              <div className="relative w-full max-w-lg mt-12 pt-32">
-                <img src="/mushroom.png" className="absolute top-0 left-1/2 -translate-x-1/2 w-72 -z-10 drop-shadow-xl mix-blend-multiply" alt="mushroom house" />
-                <div className="bg-white/90 backdrop-blur-md p-6 rounded-3xl border-2 border-pink-200 shadow-xl relative z-10 mt-16">
-                  <h3 className="font-cinzel text-center text-xl text-pink-600 font-bold mb-4">Leave a Magical Wish</h3>
-                  <GuestbookWishes />
-                </div>
-              </div>
+
 
             </div>
 

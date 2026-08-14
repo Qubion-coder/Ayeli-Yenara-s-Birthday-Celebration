@@ -5,6 +5,12 @@
     font-family: 'Dancing Script', cursive;
   }
   .font-cinzel {
+    font-family: 'Cinzel', serif;
+  }
+  .font-cinzel-decorative {
+    font-family: 'Cinzel Decorative', serif;
+  }
+  .font-playfair {
     font-family: 'Playfair Display', serif;
   }
   .font-serif-royal {
