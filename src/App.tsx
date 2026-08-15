@@ -132,14 +132,80 @@ export default function App() {
                 />
               </div>
 
-              {/* VIEW LOCATION Ribbon */}
-              <div className="relative w-full max-w-md my-8">
-                <div className="bg-gradient-to-r from-pink-400 to-pink-500 text-white py-4 px-8 shadow-md transform -rotate-2 relative z-10">
-                  <h3 className="font-cinzel text-xl tracking-widest font-bold text-center">VIEW LOCATION</h3>
-                  <div className="absolute top-0 left-0 w-4 h-full bg-pink-600 -translate-x-full clip-path-ribbon-left"></div>
-                  <div className="absolute top-0 right-0 w-4 h-full bg-pink-600 translate-x-full clip-path-ribbon-right"></div>
+              {/* DRESS CODE Coded UI */}
+              <div className="relative w-[95%] sm:w-full max-w-[650px] flex flex-col items-center justify-center mt-8 mb-4">
+                <div className="bg-[#fcf8f6]/95 w-full p-8 sm:p-14 rounded-3xl shadow-xl border border-[#eedfd6] relative z-10 text-center">
+                  <div className="absolute -top-3 -right-3 text-3xl animate-float-delayed z-20">✨</div>
+                  <div className="absolute -bottom-4 -left-4 text-3xl animate-float-slow z-20">🌸</div>
+                  
+                  <h2 className="font-fairytale text-5xl sm:text-6xl text-[#d58d94] mb-2 drop-shadow-sm">
+                    Dress Code
+                  </h2>
+                  
+                  <div className="flex items-center justify-center gap-3 mb-6">
+                    <div className="h-[1px] w-12 bg-[#d58d94]/50"></div>
+                    <Heart className="w-3 h-3 text-[#d1b068] fill-[#d1b068]" />
+                    <div className="h-[1px] w-12 bg-[#d58d94]/50"></div>
+                  </div>
+                  
+                  <p className="font-serif-royal text-[#735b5a] text-[15px] sm:text-[17px] font-medium leading-relaxed max-w-lg mx-auto mb-10">
+                    We kindly invite our guests to wear pastel-colored<br className="hidden sm:block" />
+                    semi-formal attire. Your participation in our theme<br className="hidden sm:block" />
+                    will make the celebration even more beautiful.
+                    <br /><br />
+                    We look forward to celebrating this special day with you!
+                  </p>
+                  
+                  {/* Color Palette */}
+                  <div className="flex flex-nowrap justify-center gap-x-2 sm:gap-x-6 mt-8 w-full overflow-hidden">
+                    {[
+                      { name: 'BLUSH PINK', color: '#ffc4cc' },
+                      { name: 'LAVENDER', color: '#d8c8f0' },
+                      { name: 'BABY BLUE', color: '#cbe0f5' },
+                      { name: 'SAGE GREEN', color: '#cbe2ca' },
+                      { name: 'PEACH', color: '#fecbae' },
+                      { name: 'BUTTER YELLOW', color: '#fdeea2' },
+                      { name: 'CHAMPAGNE', color: '#faebd2' }
+                    ].map((swatch, idx) => (
+                      <div key={idx} className="flex flex-col items-center gap-2 sm:gap-3">
+                        <div 
+                          className="w-8 h-8 sm:w-16 sm:h-16 rounded-full shadow-sm hover:scale-110 transition-transform cursor-pointer shrink-0"
+                          style={{ backgroundColor: swatch.color }}
+                        ></div>
+                        <span className="text-[7.5px] sm:text-xs font-serif-royal font-bold text-[#836b6a] tracking-[0.05em] sm:tracking-[0.15em] text-center uppercase leading-tight w-10 sm:w-16 shrink-0">
+                          {swatch.name.split(' ').map((w, i) => <span key={i} className="block">{w}</span>)}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                <div className="mt-4 bg-white p-4 rounded-xl shadow-sm border border-slate-100">
+              </div>
+
+              {/* VIEW LOCATION Creative Section */}
+              <div className="relative w-full max-w-lg my-12 flex flex-col items-center px-4">
+                {/* Magical Map Pin Icon */}
+                <div className="relative mb-4">
+                  <div className="absolute inset-0 bg-pink-400 rounded-full blur-xl opacity-40 animate-pulse-glow"></div>
+                  <div className="w-16 h-16 rounded-full soft-fairytale-card flex items-center justify-center relative z-10 animate-float-slow shadow-xl border-2 border-pink-200">
+                    <MapPin className="w-8 h-8 text-pink-500 drop-shadow-sm" />
+                    <Sparkles className="absolute -top-1 -right-2 w-5 h-5 text-amber-400 animate-spin" style={{ animationDuration: '4s' }} />
+                  </div>
+                </div>
+                
+                {/* Ornate Text Header */}
+                <div className="flex items-center justify-center gap-3 sm:gap-6 w-full">
+                  <div className="h-[2px] w-12 sm:w-20 bg-gradient-to-r from-transparent to-pink-400 rounded-full"></div>
+                  <h3 className="font-cinzel text-xl sm:text-2xl tracking-[0.2em] font-black text-center text-purple-950 drop-shadow-sm filter">
+                    LOCATION
+                  </h3>
+                  <div className="h-[2px] w-12 sm:w-20 bg-gradient-to-l from-transparent to-pink-400 rounded-full"></div>
+                </div>
+                <p className="font-serif-royal italic text-purple-800/70 mt-1 mb-6 text-sm sm:text-base font-bold text-center">Where the magic happens</p>
+
+                {/* Map Section */}
+                <div className="w-full bg-white/70 backdrop-blur-md p-2 sm:p-4 rounded-3xl shadow-2xl border border-white/80 relative z-10 transform hover:scale-[1.02] transition-transform duration-500">
+                  <div className="absolute -top-5 -left-5 text-3xl animate-float-delayed z-20">🦋</div>
+                  <div className="absolute -bottom-4 -right-4 text-3xl animate-float-slow z-20">🌸</div>
                   <LocationMapSection venueName="Spice in Valley" address="55 Benara Rd, Caversham WA" />
                 </div>
               </div>

@@ -87,8 +87,6 @@
   background: linear-gradient(180deg, #ec4899, #a855f7, #3b82f6);
   border-radius: 9999px;
 }
-.clip-path-ribbon-left { clip-path: polygon(100% 0, 0 50%, 100% 100%); }
-.clip-path-ribbon-right { clip-path: polygon(0 0, 100% 50%, 0 100%); }
 
 /* Hide native video controls and play button that sometimes flash on mobile/iOS */
 video::-webkit-media-controls,
