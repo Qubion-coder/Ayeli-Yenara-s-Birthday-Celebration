@@ -21,19 +21,25 @@ export const AudioPlayer: React.FC = () => {
   };
 
   useEffect(() => {
+    const events = ['click', 'touchstart', 'keydown', 'pointerdown'];
+    
     const handleInteraction = () => {
       if (audioRef.current && audioRef.current.paused) {
         audioRef.current.play().then(() => {
           setIsPlaying(true);
-        }).catch(e => console.error("Autoplay prevented:", e));
+          // Only remove listeners if play is successfully allowed by the browser
+          events.forEach(e => document.removeEventListener(e, handleInteraction, { capture: true }));
+        }).catch(e => {
+          console.log("Autoplay prevented by browser, waiting for next interaction...");
+        });
       }
-      ['click', 'touchstart', 'scroll'].forEach(e => window.removeEventListener(e, handleInteraction));
     };
 
-    ['click', 'touchstart', 'scroll'].forEach(e => window.addEventListener(e, handleInteraction, { once: true }));
+    // Use capture: true to catch events before React can stop propagation
+    events.forEach(e => document.addEventListener(e, handleInteraction, { capture: true }));
 
     return () => {
-      ['click', 'touchstart', 'scroll'].forEach(e => window.removeEventListener(e, handleInteraction));
+      events.forEach(e => document.removeEventListener(e, handleInteraction, { capture: true }));
     };
   }, []);
 
