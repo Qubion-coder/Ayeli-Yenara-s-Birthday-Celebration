@@ -66,6 +66,17 @@ export const FairytaleEnvelope: React.FC<FairytaleEnvelopeProps> = ({
             playsInline
             className="w-full h-full object-cover sm:object-contain sm:h-full" 
           />
+
+          <div className="absolute top-8 left-1/2 -translate-x-1/2 z-10">
+            <div className="rounded-full border border-[#7a4f2d]/30 bg-[#f9f2e7]/80 px-4 py-2 shadow-[0_10px_30px_rgba(0,0,0,0.16)] backdrop-blur-sm sm:px-6">
+              <p className="font-cinzel text-[9px] uppercase tracking-[0.25em] text-[#3d261d] sm:text-[10px]">
+                Birthday
+              </p>
+              <p className="mt-1 font-cinzel text-[9px] uppercase tracking-[0.25em] text-[#3d261d] sm:text-[10px]">
+                Invitation
+              </p>
+            </div>
+          </div>
           
           {!isOpening && (
             <motion.div

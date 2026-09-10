@@ -45,7 +45,7 @@ export const GuestbookWishes: React.FC = () => {
       }
     } catch (e) {
       console.error(e);
-      setMessage("Wishing little Princess Sierra a enchanting 1st birthday filled with fairy dust, and King Roy a majestic 36th year!");
+      setMessage("Wishing little Baby Menaya an enchanting birthday filled with fairy dust and blessings!");
     } finally {
       setIsGenerating(false);
     }
@@ -93,7 +93,7 @@ export const GuestbookWishes: React.FC = () => {
           Fairytale Birthday Wishes
         </h2>
         <p className="text-xs sm:text-sm text-pink-700 font-serif-royal italic mt-1">
-          Leave a magical blessing for Sierra's 1st Birthday & King Roy's 36th Birthday!
+          Leave a magical blessing for Baby Menaya's Birthday!
         </p>
       </div>
 
@@ -158,7 +158,7 @@ export const GuestbookWishes: React.FC = () => {
             rows={3}
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            placeholder="Write your magical wishes for Sierra & Roy..."
+            placeholder="Write your magical wishes for Baby Menaya..."
             className="w-full p-3 rounded-xl bg-white border border-pink-300 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-pink-400 resize-none"
           />
         </div>

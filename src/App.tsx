@@ -73,33 +73,62 @@ export default function App() {
                 playsInline
                 className="w-full h-[100dvh] sm:h-auto object-cover block" 
               />
+
+              <div className="absolute top-[7%] left-1/2 -translate-x-1/2 z-20">
+                <div className="rounded-full border border-white/60 bg-white/20 px-4 py-2 shadow-[0_10px_30px_rgba(0,0,0,0.18)] backdrop-blur-sm sm:px-6">
+                  <p className="font-cinzel text-[9px] uppercase tracking-[0.35em] text-amber-800 sm:text-[11px]">
+                    Birthday Invitation
+                  </p>
+                </div>
+              </div>
               
               {/* Photo placed perfectly inside the golden oval frame in the background image */}
               <div className="absolute top-[16.5%] left-[27%] w-[46%] aspect-[3.2/4] rounded-full overflow-hidden mix-blend-multiply border-2 border-transparent">
-                <img src="/1.jpeg" className="w-full h-full object-cover scale-110" alt="Sierra and Roy" />
+                <img src="/1.jpeg" className="w-full h-full object-cover scale-110" alt="Baby Menaya" />
               </div>
               
               {/* Main Invitation Text (positioned below the photo) */}
               <div className="absolute top-[48%] sm:top-[52%] left-0 w-full text-center space-y-2 sm:space-y-3 z-10 px-4">
                 <p className="font-serif-royal italic text-purple-900 font-bold text-sm sm:text-base">Please join us for</p>
                 <h1 className="font-cinzel text-3xl sm:text-4xl font-black text-pink-600 drop-shadow-md leading-tight">
-                  SIERRA'S <span className="block text-xl sm:text-2xl mt-1 text-purple-700">FAIRY 1ST BIRTHDAY</span>
-                </h1>
-                <p className="font-serif-royal italic text-purple-900 font-bold">&</p>
-                <h1 className="font-cinzel text-3xl sm:text-4xl font-bold text-amber-600 drop-shadow-md leading-tight">
-                  ROY'S <span className="block text-xl sm:text-2xl mt-1 text-purple-700">ROYAL 36TH</span>
+                  BABY MENAYA'S
+                  <span className="block text-xl sm:text-2xl mt-1 text-purple-700">BIRTHDAY CELEBRATION</span>
                 </h1>
                 
                 <div className="w-full max-w-[200px] mx-auto h-px bg-gradient-to-r from-transparent via-pink-400 to-transparent my-3"></div>
                 
                 <div className="text-xs sm:text-sm font-bold text-slate-800 tracking-wide uppercase font-sans leading-relaxed">
-                  <p>Sunday, 13 Sept 2026</p>
-                  <p>11:30 AM – 2:30 PM</p>
+                  <p>Friday, 17 Oct 2025</p>
+                  <p>6:00 PM</p>
                 </div>
                 
-                <div className="text-[10px] sm:text-xs text-slate-800 italic mt-1">
-                  <p className="font-bold">Spice in Valley</p>
-                  <p>55 Benara Rd, Caversham</p>
+                <div className="text-[10px] sm:text-xs text-slate-800 italic mt-1 font-semibold">
+                  <p className="font-bold">Samara Banquet Hall</p>
+                  <p>Gampaha</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="w-full px-4 relative z-10">
+              <div className="mx-auto max-w-[760px] rounded-[30px] border border-pink-200/40 bg-white/10 p-4 shadow-[0_20px_50px_rgba(80,22,59,0.18)] backdrop-blur-sm sm:p-6">
+                <div className="mb-4 text-center">
+                  <p className="font-cinzel text-[10px] uppercase tracking-[0.35em] text-rose-900/70 sm:text-xs">
+                    Our little star
+                  </p>
+                </div>
+                <div className="grid grid-cols-3 gap-3 sm:gap-5">
+                  {["/pre/ChatGPT Image Sep 11, 2026, 03_36_55 AM.png", "/pre/ChatGPT Image Sep 11, 2026, 03_40_12 AM.png", "/pre/ChatGPT Image Sep 11, 2026, 03_41_57 AM.png"].map((image, index) => (
+                    <div
+                      key={image}
+                      className={`overflow-hidden rounded-[24px] border border-white/40 bg-white/5 shadow-lg ${index === 1 ? 'translate-y-3 sm:translate-y-5' : ''}`}
+                    >
+                      <img
+                        src={image}
+                        alt="Baby Menaya memory"
+                        className="h-44 w-full object-cover object-center transition duration-500 hover:scale-105 sm:h-56"
+                      />
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -107,8 +136,8 @@ export default function App() {
             {/* Collage Elements Grid */}
             <div className="w-full relative min-h-[800px] flex flex-col items-center gap-16 md:gap-24 mt-8">
               
-              <div className="w-full px-4 relative z-10 flex justify-center">
-                 <CountdownTimer targetDate="2026-09-13T11:30:00" />
+              <div className="w-full px-4 relative z-20 flex justify-center">
+                 <CountdownTimer targetDate="2025-10-17T18:00:00+05:30" />
               </div>
 
               {/* KINDLY RSVP Circle */}
@@ -123,62 +152,9 @@ export default function App() {
                 <div className="absolute top-0 -right-6 text-2xl animate-float-slow">🦋</div>
               </div>
 
-              {/* PARTY SCHEDULE Scroll */}
-              <div className="relative w-[115%] sm:w-full max-w-[500px] flex items-center justify-center mt-12 mb-4 -ml-4 sm:ml-0">
-                <img 
-                  src="/ChatGPT_Image_Aug_15__2026__03_22_39_AM-removebg-preview.png" 
-                  className="w-full h-auto object-contain drop-shadow-2xl scale-110 sm:scale-100" 
-                  alt="Party Schedule" 
-                />
-              </div>
-
-              {/* DRESS CODE Coded UI */}
-              <div className="relative w-[95%] sm:w-full max-w-[650px] flex flex-col items-center justify-center mt-8 mb-4">
-                <div className="bg-[#fcf8f6]/95 w-full p-8 sm:p-14 rounded-3xl shadow-xl border border-[#eedfd6] relative z-10 text-center">
-                  <div className="absolute -top-3 -right-3 text-3xl animate-float-delayed z-20">✨</div>
-                  <div className="absolute -bottom-4 -left-4 text-3xl animate-float-slow z-20">🌸</div>
-                  
-                  <h2 className="font-fairytale text-5xl sm:text-6xl text-[#d58d94] mb-2 drop-shadow-sm">
-                    Dress Code
-                  </h2>
-                  
-                  <div className="flex items-center justify-center gap-3 mb-6">
-                    <div className="h-[1px] w-12 bg-[#d58d94]/50"></div>
-                    <Heart className="w-3 h-3 text-[#d1b068] fill-[#d1b068]" />
-                    <div className="h-[1px] w-12 bg-[#d58d94]/50"></div>
-                  </div>
-                  
-                  <p className="font-serif-royal text-[#735b5a] text-[15px] sm:text-[17px] font-medium leading-relaxed max-w-lg mx-auto mb-10">
-                    We kindly invite our guests to wear pastel-colored<br className="hidden sm:block" />
-                    semi-formal attire. Your participation in our theme<br className="hidden sm:block" />
-                    will make the celebration even more beautiful.
-                    <br /><br />
-                    We look forward to celebrating this special day with you!
-                  </p>
-                  
-                  {/* Color Palette */}
-                  <div className="flex flex-nowrap justify-center gap-x-2 sm:gap-x-6 mt-8 w-full overflow-hidden">
-                    {[
-                      { name: 'BLUSH PINK', color: '#ffc4cc' },
-                      { name: 'LAVENDER', color: '#d8c8f0' },
-                      { name: 'BABY BLUE', color: '#cbe0f5' },
-                      { name: 'SAGE GREEN', color: '#cbe2ca' },
-                      { name: 'PEACH', color: '#fecbae' },
-                      { name: 'BUTTER YELLOW', color: '#fdeea2' },
-                      { name: 'CHAMPAGNE', color: '#faebd2' }
-                    ].map((swatch, idx) => (
-                      <div key={idx} className="flex flex-col items-center gap-2 sm:gap-3">
-                        <div 
-                          className="w-8 h-8 sm:w-16 sm:h-16 rounded-full shadow-sm hover:scale-110 transition-transform cursor-pointer shrink-0"
-                          style={{ backgroundColor: swatch.color }}
-                        ></div>
-                        <span className="text-[7.5px] sm:text-xs font-serif-royal font-bold text-[#836b6a] tracking-[0.05em] sm:tracking-[0.15em] text-center uppercase leading-tight w-10 sm:w-16 shrink-0">
-                          {swatch.name.split(' ').map((w, i) => <span key={i} className="block">{w}</span>)}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+              {/* PARTY SCHEDULE */}
+              <div className="relative w-full max-w-[550px] px-4">
+                <PartySchedule />
               </div>
 
               {/* VIEW LOCATION Creative Section */}
@@ -206,7 +182,11 @@ export default function App() {
                 <div className="w-full bg-white/70 backdrop-blur-md p-2 sm:p-4 rounded-3xl shadow-2xl border border-white/80 relative z-10 transform hover:scale-[1.02] transition-transform duration-500">
                   <div className="absolute -top-5 -left-5 text-3xl animate-float-delayed z-20">🦋</div>
                   <div className="absolute -bottom-4 -right-4 text-3xl animate-float-slow z-20">🌸</div>
-                  <LocationMapSection venueName="Spice in Valley" address="55 Benara Rd, Caversham WA" />
+                  <LocationMapSection 
+                    venueName="Samara Banquet Hall" 
+                    address="No. 71/2/A, Yakkala Road, Bandarawatta, Gampaha" 
+                    mapsUrl="https://maps.app.goo.gl/syzAERatEEDNx7bu5" 
+                  />
                 </div>
               </div>
 
@@ -219,7 +199,7 @@ export default function App() {
               <p className="flex items-center justify-center gap-1">
                 <span>Crafted with magic for</span>
                 <Heart className="w-3.5 h-3.5 text-pink-400 fill-pink-400" />
-                <span>Sierra & Roy</span>
+                <span>Baby Menaya</span>
               </p>
             </footer>
 

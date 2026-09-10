@@ -2,24 +2,26 @@ import React from 'react';
 import { MapPin, Navigation, Calendar as CalendarIcon, ExternalLink, Download } from 'lucide-react';
 
 interface LocationMapSectionProps {
-  venueName: string;
-  address: string;
+  venueName?: string;
+  address?: string;
+  mapsUrl?: string;
 }
 
 export const LocationMapSection: React.FC<LocationMapSectionProps> = ({
-  venueName = "Spice in Valley",
-  address = "55 Benara Rd, Caversham WA 6055"
+  venueName = "Samara Banquet Hall",
+  address = "No. 71/2/A, Yakkala Road, Bandarawatta, Gampaha",
+  mapsUrl = "https://maps.app.goo.gl/syzAERatEEDNx7bu5"
 }) => {
-  const encodedAddress = encodeURIComponent(`${venueName}, ${address}`);
-  const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`;
+  const encodedAddress = encodeURIComponent(`${venueName}, Gampaha, Sri Lanka`);
+  const directMapsUrl = mapsUrl || "https://maps.app.goo.gl/syzAERatEEDNx7bu5";
 
   // Calendar event generator
   const createGoogleCalendarLink = () => {
-    // 20260913T033000Z to 20260913T063000Z (UTC for 11:30 AM to 2:30 PM AWST UTC+8)
-    const title = encodeURIComponent("Sierra's 1st & Roy's 36th Fairytale Birthday");
-    const details = encodeURIComponent("Join us for a royal fairytale celebration at Spice in Valley!");
+    // 17th October 2025 6:00 PM Sri Lanka Time (UTC+5:30) -> 12:30 UTC to 16:30 UTC
+    const title = encodeURIComponent("Baby Menaya's Birthday Celebration");
+    const details = encodeURIComponent("Join us for a magical fairytale celebration for Baby Menaya at Samara Banquet Hall, Gampaha!");
     const location = encodeURIComponent(`${venueName}, ${address}`);
-    return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=20260913T033000Z/20260913T063000Z&details=${details}&location=${location}`;
+    return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=20251017T123000Z/20251017T163000Z&details=${details}&location=${location}`;
   };
 
   const downloadIcsFile = () => {
@@ -27,11 +29,11 @@ export const LocationMapSection: React.FC<LocationMapSectionProps> = ({
       'BEGIN:VCALENDAR',
       'VERSION:2.0',
       'BEGIN:VEVENT',
-      'SUMMARY:Sierra 1st & Roy 36th Birthday Celebration',
-      'DESCRIPTION:Fairytale and King theme birthday celebration at Spice in Valley.',
-      'LOCATION:' + address,
-      'DTSTART:20260913T033000Z',
-      'DTEND:20260913T063000Z',
+      'SUMMARY:Baby Menaya Birthday Celebration',
+      'DESCRIPTION:Fairytale birthday celebration for Baby Menaya at Samara Banquet Hall, Gampaha.',
+      'LOCATION:' + venueName + ', ' + address,
+      'DTSTART:20251017T123000Z',
+      'DTEND:20251017T163000Z',
       'END:VEVENT',
       'END:VCALENDAR'
     ].join('\n');
@@ -39,7 +41,7 @@ export const LocationMapSection: React.FC<LocationMapSectionProps> = ({
     const blob = new Blob([csContent], { type: 'text/calendar;charset=utf-8' });
     const link = document.createElement('a');
     link.href = window.URL.createObjectURL(blob);
-    link.setAttribute('download', 'Sierra_and_Roy_Birthday.ics');
+    link.setAttribute('download', 'Baby_Menaya_Birthday.ics');
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -61,7 +63,7 @@ export const LocationMapSection: React.FC<LocationMapSectionProps> = ({
         </div>
 
         <a
-          href={mapsUrl}
+          href={directMapsUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold text-xs sm:text-sm shadow-lg shadow-pink-500/20 transition active:scale-95"
@@ -75,7 +77,7 @@ export const LocationMapSection: React.FC<LocationMapSectionProps> = ({
       {/* Embedded Map Visual Frame */}
       <div className="relative w-full h-52 sm:h-64 rounded-2xl overflow-hidden border border-pink-400/30 shadow-inner bg-slate-800">
         <iframe
-          title="Spice in Valley Location Map"
+          title="Samara Banquet Hall Location Map"
           width="100%"
           height="100%"
           style={{ border: 0, filter: 'contrast(1.05) opacity(0.9)' }}
@@ -88,7 +90,7 @@ export const LocationMapSection: React.FC<LocationMapSectionProps> = ({
       {/* Add to Calendar Actions */}
       <div className="mt-6 pt-4 border-t border-slate-800 flex flex-wrap items-center justify-between gap-3">
         <span className="text-xs font-serif-royal text-pink-200/80 italic">
-          ✨ Sunday, 13th September 2026 • 11:30 AM – 2:30 PM
+          ✨ Friday, 17th October 2025 • 6:00 PM
         </span>
 
         <div className="flex items-center gap-2">

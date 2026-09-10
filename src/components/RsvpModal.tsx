@@ -210,7 +210,7 @@ export const RsvpModal: React.FC<RsvpModalProps> = ({ isOpen, onClose, onRsvpSuc
                 {/* Leave a Wish */}
                 <div>
                   <label className="block text-[15px] font-serif-royal text-[#6b6863] mb-2 font-bold">
-                    Leave a Magical Wish for Sierra & Roy (Optional)
+                    Leave a Magical Wish for Baby Menaya (Optional)
                   </label>
                   <textarea
                     rows={2}

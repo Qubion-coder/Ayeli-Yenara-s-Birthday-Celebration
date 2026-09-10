@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Clock, Sparkles } from 'lucide-react';
+import { Sparkles, Crown } from 'lucide-react';
 
 interface CountdownTimerProps {
-  targetDate: string; // "2026-09-13T11:30:00"
+  targetDate: string; // e.g. "2025-10-17T18:00:00+05:30" or "2026-10-17T18:00:00+05:30"
 }
 
 export const CountdownTimer: React.FC<CountdownTimerProps> = ({ targetDate }) => {
@@ -11,74 +11,95 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({ targetDate }) =>
     hours: 0,
     minutes: 0,
     seconds: 0,
-    isPast: false,
   });
 
   useEffect(() => {
     const calculateTimeLeft = () => {
-      // 13th September 2026 11:30 AM WA Time (UTC+8)
-      const targetTime = new Date("2026-09-13T11:30:00+08:00").getTime();
-      const now = new Date().getTime();
-      const difference = targetTime - now;
+      let target = new Date(targetDate).getTime();
+      const now = Date.now();
 
-      if (difference <= 0) {
-        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0, isPast: true });
-        return;
+      // If the target date is in the past, roll forward to the next upcoming 17th of October
+      // so the countdown timer always shows an active, ticking countdown!
+      if (isNaN(target) || target <= now) {
+        const d = new Date(targetDate);
+        if (isNaN(d.getTime())) {
+          const nextYear = new Date().getFullYear();
+          const candidate = new Date(`${nextYear}-10-17T18:00:00+05:30`).getTime();
+          target = candidate > now ? candidate : new Date(`${nextYear + 1}-10-17T18:00:00+05:30`).getTime();
+        } else {
+          const currentYear = new Date().getFullYear();
+          d.setFullYear(currentYear);
+          if (d.getTime() <= now) {
+            d.setFullYear(currentYear + 1);
+          }
+          target = d.getTime();
+        }
       }
 
-      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((difference / 1000 / 60) % 60);
-      const seconds = Math.floor((difference / 1000) % 60);
+      const diff = Math.max(0, target - now);
 
-      setTimeLeft({ days, hours, minutes, seconds, isPast: false });
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      setTimeLeft({ days, hours, minutes, seconds });
     };
 
     calculateTimeLeft();
-    const timer = setInterval(calculateTimeLeft, 1000);
-    return () => clearInterval(timer);
+    const interval = setInterval(calculateTimeLeft, 1000);
+    return () => clearInterval(interval);
   }, [targetDate]);
 
+  const units = [
+    { label: 'DAYS', value: timeLeft.days },
+    { label: 'HOURS', value: timeLeft.hours },
+    { label: 'MIN', value: timeLeft.minutes },
+    { label: 'SEC', value: timeLeft.seconds },
+  ];
+
   return (
-    <div className="w-full my-6 p-6 rounded-2xl bg-gradient-to-r from-purple-950/80 via-slate-900/90 to-pink-950/80 border border-pink-500/30 backdrop-blur-md text-white shadow-xl">
-      <div className="flex items-center justify-center gap-2 text-amber-300 mb-4 text-xs font-bold font-cinzel tracking-widest uppercase">
-        <Sparkles className="w-4 h-4" />
-        <span>Countdown to the Fairytale Royal Feast</span>
-        <Sparkles className="w-4 h-4" />
+    <div className="relative z-10 w-full max-w-[560px] my-6 p-5 sm:p-7 rounded-[32px] border-2 border-pink-400/40 bg-gradient-to-br from-[#2a0e2d]/95 via-[#1a0826]/95 to-[#3b1236]/95 backdrop-blur-xl shadow-[0_20px_60px_rgba(40,10,45,0.7)] text-white">
+      
+      {/* Header with magical royal sparkles */}
+      <div className="flex items-center justify-center gap-2 mb-5 text-center">
+        <Sparkles className="w-4 h-4 text-amber-300 animate-pulse" />
+        <span className="font-cinzel text-xs sm:text-sm font-bold tracking-[0.25em] text-amber-200 uppercase drop-shadow">
+          Countdown to the Royal Celebration
+        </span>
+        <Sparkles className="w-4 h-4 text-amber-300 animate-pulse" />
       </div>
 
-      {timeLeft.isPast ? (
-        <div className="text-center py-2 text-pink-300 font-cinzel text-xl font-bold">
-          ✨ The Magical Royal Party Is Happening Today! ✨
-        </div>
-      ) : (
-        <div className="grid grid-cols-4 gap-2 sm:gap-4 max-w-md mx-auto text-center">
-          <div className="p-2 sm:p-3 rounded-xl bg-purple-900/50 border border-pink-400/20 backdrop-blur-sm">
-            <span className="block font-cinzel text-2xl sm:text-3xl font-black text-amber-200">
-              {timeLeft.days}
+      {/* 4 Number Countdown Boxes (Days, Hours, Min, Sec) */}
+      <div className="grid grid-cols-4 gap-2.5 sm:gap-4">
+        {units.map((unit) => (
+          <div
+            key={unit.label}
+            className="relative flex flex-col items-center justify-center p-3 sm:p-4 rounded-2xl border border-pink-300/30 bg-white/10 shadow-[inset_0_2px_4px_rgba(255,255,255,0.15),0_8px_20px_rgba(0,0,0,0.3)] backdrop-blur-md group hover:border-pink-300/60 transition-colors"
+          >
+            {/* Ambient golden glow behind number */}
+            <div className="absolute inset-0 bg-gradient-to-t from-pink-500/10 to-amber-300/10 rounded-2xl pointer-events-none" />
+
+            <span className="font-mono text-2xl sm:text-4xl md:text-5xl font-black tracking-tight text-amber-200 drop-shadow-[0_2px_12px_rgba(251,191,36,0.6)] leading-none">
+              {String(unit.value).padStart(2, '0')}
             </span>
-            <span className="text-[10px] sm:text-xs text-pink-200 uppercase font-semibold">Days</span>
-          </div>
-          <div className="p-2 sm:p-3 rounded-xl bg-purple-900/50 border border-pink-400/20 backdrop-blur-sm">
-            <span className="block font-cinzel text-2xl sm:text-3xl font-black text-amber-200">
-              {timeLeft.hours}
+
+            <span className="mt-2 text-[10px] sm:text-xs font-serif-royal font-bold tracking-[0.18em] uppercase text-pink-200/90 leading-none">
+              {unit.label}
             </span>
-            <span className="text-[10px] sm:text-xs text-pink-200 uppercase font-semibold">Hours</span>
           </div>
-          <div className="p-2 sm:p-3 rounded-xl bg-purple-900/50 border border-pink-400/20 backdrop-blur-sm">
-            <span className="block font-cinzel text-2xl sm:text-3xl font-black text-amber-200">
-              {timeLeft.minutes}
-            </span>
-            <span className="text-[10px] sm:text-xs text-pink-200 uppercase font-semibold">Mins</span>
-          </div>
-          <div className="p-2 sm:p-3 rounded-xl bg-purple-900/50 border border-pink-400/20 backdrop-blur-sm">
-            <span className="block font-cinzel text-2xl sm:text-3xl font-black text-amber-200">
-              {timeLeft.seconds}
-            </span>
-            <span className="text-[10px] sm:text-xs text-pink-200 uppercase font-semibold">Secs</span>
-          </div>
-        </div>
-      )}
+        ))}
+      </div>
+
+      {/* Subtitle / Event Date Tag */}
+      <div className="mt-4 pt-3 border-t border-pink-500/20 text-center">
+        <p className="text-[11px] sm:text-xs text-pink-200/80 font-serif-royal italic flex items-center justify-center gap-1.5">
+          <Crown className="w-3.5 h-3.5 text-amber-300 inline" />
+          <span>Baby Menaya's Fairytale Birthday • 6:00 PM</span>
+          <Crown className="w-3.5 h-3.5 text-amber-300 inline" />
+        </p>
+      </div>
+
     </div>
   );
 };

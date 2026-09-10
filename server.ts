@@ -26,7 +26,7 @@ const rsvps: Array<{
     adultsCount: 2,
     kidsCount: 1,
     dietary: "Vegetarian option preferred",
-    specialNote: "Cannot wait to celebrate Little Princess Sierra & King Roy!",
+    specialNote: "Cannot wait to celebrate Baby Menaya!",
     submittedAt: new Date().toISOString(),
   }
 ];
@@ -103,17 +103,16 @@ app.post("/api/generate-wish", async (req, res) => {
     if (!ai) {
       // Fallback fairytale templates if API key is not configured
       const fallbacks = [
-        `May magical pixie dust follow sweet Little Sierra on her 1st birthday, and may King Roy's kingdom shine brightest on his 36th year! Warmest wishes from ${guestName || 'a dear guest'}!`,
-        `By royal decree, wishing Sierra a fairytale 1st birthday filled with magic and mushrooms, and Roy a regal 36th year full of triumph and joy! With love from ${guestName || 'a family friend'}.`,
-        `Sending fairy wings and golden crown blessings to baby Sierra for turning 1, and royal cheers to King Roy for turning 36! Excited to celebrate with you at Spice in Valley!`
+        `May magical pixie dust follow sweet Baby Menaya on her birthday! Warmest wishes from ${guestName || 'a dear guest'}!`,
+        `By royal decree, wishing Baby Menaya a fairytale birthday filled with magic, laughter, and endless joy! With love from ${guestName || 'a family friend'}.`,
+        `Sending fairy wings and golden crown blessings to Baby Menaya! Excited to celebrate with you at Samara Banquet Hall Gampaha!`
       ];
       const randomFallback = fallbacks[Math.floor(Math.random() * fallbacks.length)];
       return res.json({ wish: randomFallback });
     }
 
-    const prompt = `Write a short, heart-warming, fairytale-themed birthday blessing message (2-3 sentences max) for a joint birthday party:
-- Sierra (daughter turning 1 year old) - Fairy / Princess theme
-- Roy (father/husband turning 36 years old) - Royal King theme
+    const prompt = `Write a short, heart-warming, fairytale-themed birthday blessing message (2-3 sentences max) for Baby Menaya's Birthday Celebration:
+- Baby Menaya (birthday girl) - Fairy / Princess theme
 From guest: "${guestName || 'A Loving Guest'}" (Relation: ${relation || 'Friend/Family'}).
 Use magical fairy dust, royal kingdom, crown, and floral theme keywords! Tone should be ${tone || 'sweet & enchanting'}.`;
 
@@ -122,7 +121,7 @@ Use magical fairy dust, royal kingdom, crown, and floral theme keywords! Tone sh
       contents: prompt,
     });
 
-    const wishText = response.text || "May your fairytale double birthday be filled with endless magic, royal joy, and sweet memories!";
+    const wishText = response.text || "May your fairytale birthday celebration be filled with endless magic, royal joy, and sweet memories!";
     res.json({ wish: wishText });
   } catch (err: any) {
     console.error("Gemini API wish generation error:", err);

@@ -1,6 +1,6 @@
 {
-  "name": "Sierra & Roy's Fairytale Birthday Invitation",
-  "description": "An interactive fairytale and royal king themed digital invitation for Sierra's 1st & Roy's 36th Birthday celebration in pink, blue, and purple.",
+  "name": "Baby Menaya's Fairytale Birthday Invitation",
+  "description": "An interactive fairytale themed digital invitation for Baby Menaya's Birthday celebration at Samara Banquet Hall, Gampaha.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

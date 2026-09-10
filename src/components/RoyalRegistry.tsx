@@ -1,19 +1,13 @@
 import React, { useState } from 'react';
-import { Gift, Heart, Sparkles, ShoppingBag, ExternalLink, Coin, Info } from 'lucide-react';
+import { Gift, Heart, Sparkles } from 'lucide-react';
 
 export const RoyalRegistry: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'sierra' | 'roy' | 'wishingWell'>('sierra');
+  const [activeTab, setActiveTab] = useState<'menaya' | 'wishingWell'>('menaya');
 
-  const sierraItems = [
-    { title: "Fairytale Picture Books & Soft Plushies", category: "Books & Toys", note: "Sierra loves colorful touch-and-feel books!" },
-    { title: "Wooden Montessori Activity Walker", category: "1st Year Milestones", note: "Helping Sierra take her first royal steps" },
-    { title: "Fairy Dress & Princess Hair Accessories", category: "Keepsakes", note: "Cute toddler princess outfits size 1-2" }
-  ];
-
-  const royItems = [
-    { title: "Gourmet Spice & Dining Experiences", category: "Foodie Treats", note: "Roy loves exploring authentic spice flavors" },
-    { title: "Espresso & Artisan Coffee Favorites", category: "King's Brew", note: "Specialty coffee beans or mug collectibles" },
-    { title: "Outdoor & Tech Gadget Accessories", category: "Royal Hobbies", note: "Travel flasks, smartwatch bands, tech gear" }
+  const menayaItems = [
+    { title: "Fairytale Picture Books & Soft Plushies", category: "Books & Toys", note: "Baby Menaya loves colorful touch-and-feel books!" },
+    { title: "Wooden Montessori Activity Toys", category: "Milestones", note: "Interactive and learning sensory toys" },
+    { title: "Fairy Dress & Princess Hair Accessories", category: "Keepsakes", note: "Cute toddler princess outfits" }
   ];
 
   return (
@@ -26,32 +20,21 @@ export const RoyalRegistry: React.FC = () => {
           Royal Gift Registry
         </h2>
         <p className="text-xs sm:text-sm text-pink-700 font-serif-royal italic mt-1">
-          Your presence is our greatest present! For those who wish to honor Sierra & Roy:
+          Your presence is our greatest present! For those who wish to honor Baby Menaya:
         </p>
       </div>
 
       {/* Tabs */}
-      <div className="flex rounded-2xl bg-pink-100/80 p-1.5 max-w-md mx-auto mb-6">
+      <div className="flex rounded-2xl bg-pink-100/80 p-1.5 max-w-sm mx-auto mb-6">
         <button
-          onClick={() => setActiveTab('sierra')}
+          onClick={() => setActiveTab('menaya')}
           className={`flex-1 py-2 text-xs font-bold rounded-xl transition ${
-            activeTab === 'sierra'
+            activeTab === 'menaya'
               ? 'bg-purple-900 text-amber-200 shadow-md'
               : 'text-purple-900 hover:bg-pink-200/60'
           }`}
         >
-          🌸 Sierra's 1st Wishlist
-        </button>
-
-        <button
-          onClick={() => setActiveTab('roy')}
-          className={`flex-1 py-2 text-xs font-bold rounded-xl transition ${
-            activeTab === 'roy'
-              ? 'bg-purple-900 text-amber-200 shadow-md'
-              : 'text-purple-900 hover:bg-pink-200/60'
-          }`}
-        >
-          👑 King Roy's Favorites
+          🌸 Baby Menaya's Wishlist
         </button>
 
         <button
@@ -76,15 +59,15 @@ export const RoyalRegistry: React.FC = () => {
             Fairytale Blessing Jar & Wishing Well
           </h3>
           <p className="text-xs sm:text-sm text-slate-700 mt-2 max-w-lg mx-auto font-serif-royal leading-relaxed">
-            If you wish to give a gift, a contribution towards Little Princess Sierra's future education fund and King Roy's family adventures in our Wishing Well on party day would be warmly appreciated!
+            If you wish to give a gift, a contribution towards Little Baby Menaya's future in our Wishing Well on party day would be warmly appreciated!
           </p>
           <div className="mt-4 inline-block px-4 py-2 rounded-xl bg-purple-900 text-amber-200 text-xs font-bold">
-            🎁 A Wishing Well box will be placed at Spice in Valley
+            🎁 A Wishing Well box will be placed at Samara Banquet Hall Gampaha
           </div>
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          {(activeTab === 'sierra' ? sierraItems : royItems).map((item, idx) => (
+          {menayaItems.map((item, idx) => (
             <div key={idx} className="p-4 rounded-2xl bg-gradient-to-b from-pink-50/80 to-purple-50/80 border border-pink-200 flex flex-col justify-between">
               <div>
                 <span className="inline-block px-2 py-0.5 rounded-md bg-purple-100 text-purple-800 text-[10px] font-bold uppercase mb-2">

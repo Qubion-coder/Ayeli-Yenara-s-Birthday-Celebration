@@ -1,20 +1,32 @@
 import React from 'react';
-import { Calendar, Clock, Utensils, Gift, Cake, Sparkles, HeartHandshake } from 'lucide-react';
+import { Clock } from 'lucide-react';
 import { ScheduleItem } from '../types';
 
 export const PartySchedule: React.FC = () => {
   const items: ScheduleItem[] = [
     {
-      time: "11:30 AM",
-      title: "Event Starts",
-      description: "Step into our fairytale realm! Welcome to the celebration for Princess Sierra & King Roy.",
+      time: "6:00 PM",
+      title: "Party Begins",
+      description: "Step into our fairytale realm! Welcome drinks, warm greetings & photo sessions.",
       icon: "✨",
     },
     {
-      time: "2:30 PM",
-      title: "Event Concludes",
-      description: "Royal Farewell and heartfelt thanks for celebrating with our family!",
+      time: "7:30 PM",
+      title: "Birthday Cake & Celebration",
+      description: "Gather around for Baby Menaya's cake cutting ceremony and special musical wishes.",
+      icon: "🎂",
+    },
+    {
+      time: "8:30 PM",
+      title: "Royal Banquet Dinner",
+      description: "Enjoy a delightful dinner feast with music and wonderful company.",
       icon: "👑",
+    },
+    {
+      time: "10:00 PM",
+      title: "Thank You & Farewells",
+      description: "Heartfelt gratitude and fairy blessings as we wrap up this magical celebration.",
+      icon: "🌸",
     }
   ];
 
@@ -27,8 +39,8 @@ export const PartySchedule: React.FC = () => {
         <h2 className="font-cinzel text-2xl sm:text-3xl font-bold text-purple-950">
           Party Schedule
         </h2>
-        <p className="text-xs sm:text-sm text-pink-700 font-serif-royal italic mt-1">
-          11:30 AM to 2:30 PM • Spice in Valley
+        <p className="text-xs sm:text-sm text-pink-700 font-serif-royal italic mt-1 font-semibold">
+          6:00 PM onwards • Samara Banquet Hall, Gampaha
         </p>
       </div>
 
