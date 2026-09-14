@@ -17,11 +17,11 @@ export const LocationMapSection: React.FC<LocationMapSectionProps> = ({
 
   // Calendar event generator
   const createGoogleCalendarLink = () => {
-    // 17th October 2025 6:00 PM Sri Lanka Time (UTC+5:30) -> 12:30 UTC to 16:30 UTC
+    // 17th October 2026 6:00 PM Sri Lanka Time (UTC+5:30) -> 12:30 UTC to 16:30 UTC
     const title = encodeURIComponent("Baby Menaya's Birthday Celebration");
     const details = encodeURIComponent("Join us for a magical fairytale celebration for Baby Menaya at Samara Banquet Hall, Gampaha!");
     const location = encodeURIComponent(`${venueName}, ${address}`);
-    return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=20251017T123000Z/20251017T163000Z&details=${details}&location=${location}`;
+    return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=20261017T123000Z/20261017T163000Z&details=${details}&location=${location}`;
   };
 
   const downloadIcsFile = () => {
@@ -32,8 +32,8 @@ export const LocationMapSection: React.FC<LocationMapSectionProps> = ({
       'SUMMARY:Baby Menaya Birthday Celebration',
       'DESCRIPTION:Fairytale birthday celebration for Baby Menaya at Samara Banquet Hall, Gampaha.',
       'LOCATION:' + venueName + ', ' + address,
-      'DTSTART:20251017T123000Z',
-      'DTEND:20251017T163000Z',
+      'DTSTART:20261017T123000Z',
+      'DTEND:20261017T163000Z',
       'END:VEVENT',
       'END:VCALENDAR'
     ].join('\n');
@@ -90,7 +90,7 @@ export const LocationMapSection: React.FC<LocationMapSectionProps> = ({
       {/* Add to Calendar Actions */}
       <div className="mt-6 pt-4 border-t border-slate-800 flex flex-wrap items-center justify-between gap-3">
         <span className="text-xs font-serif-royal text-pink-200/80 italic">
-          ✨ Friday, 17th October 2025 • 6:00 PM
+          ✨ Saturday, 17th October 2026 • 6:00 PM
         </span>
 
         <div className="flex items-center gap-2">

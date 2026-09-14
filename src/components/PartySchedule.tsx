@@ -11,7 +11,7 @@ export const PartySchedule: React.FC = () => {
       icon: "✨",
     },
     {
-      time: "7:30 PM",
+      time: "7:00 PM",
       title: "Birthday Cake & Celebration",
       description: "Gather around for Baby Menaya's cake cutting ceremony and special musical wishes.",
       icon: "🎂",
@@ -23,7 +23,7 @@ export const PartySchedule: React.FC = () => {
       icon: "👑",
     },
     {
-      time: "10:00 PM",
+      time: "11:00 PM",
       title: "Thank You & Farewells",
       description: "Heartfelt gratitude and fairy blessings as we wrap up this magical celebration.",
       icon: "🌸",

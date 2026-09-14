@@ -12,6 +12,7 @@ interface RsvpModalProps {
 export const RsvpModal: React.FC<RsvpModalProps> = ({ isOpen, onClose, onRsvpSuccess }) => {
   const [guestName, setGuestName] = useState('');
   const [guestsCount, setGuestsCount] = useState('');
+  const [kidsCount, setKidsCount] = useState('');
   const [attending, setAttending] = useState<boolean | null>(null);
   const [specialNote, setSpecialNote] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -26,14 +27,14 @@ export const RsvpModal: React.FC<RsvpModalProps> = ({ isOpen, onClose, onRsvpSuc
     setIsSubmitting(true);
 
     try {
-      // REPLACE THIS URL WITH YOUR GOOGLE APPS SCRIPT WEB APP URL
-      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyKhsLQpU8534WTdghYwOll3eJRU-kTmbJF-g-SgznGVUG6mopAWm7bj32JOpPCJEt7/exec';
+      // Google Apps Script Web App URL
+      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxjhnF46qG4ER7hHlev41xQnZqK76ZvxXwDQL7Ie_JhtG-MrABxWtJzhQ61HFvZI422/exec';
 
       const payload = {
         guestName,
         attending,
         adultsCount: Number(guestsCount) || 1,
-        kidsCount: 0,
+        kidsCount: Number(kidsCount) || 0,
         specialNote,
       };
 
@@ -62,7 +63,7 @@ export const RsvpModal: React.FC<RsvpModalProps> = ({ isOpen, onClose, onRsvpSuc
         email: '',
         attending,
         adultsCount: Number(guestsCount) || 1,
-        kidsCount: 0,
+        kidsCount: Number(kidsCount) || 0,
         dietary: '',
         specialNote,
         submittedAt: new Date().toISOString()
@@ -164,17 +165,32 @@ export const RsvpModal: React.FC<RsvpModalProps> = ({ isOpen, onClose, onRsvpSuc
                 </div>
 
                 {/* Number of guests */}
-                <div>
-                  <label className="block text-[15px] font-serif-royal text-[#6b6863] mb-2 font-bold">
-                    Number of guests attending*
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={guestsCount}
-                    onChange={(e) => setGuestsCount(e.target.value)}
-                    className="w-full px-3 py-3 rounded-[4px] bg-[#f0eee9] border border-[#a9a5a3] text-[#5c5552] text-sm focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 transition"
-                  />
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-[15px] font-serif-royal text-[#6b6863] mb-2 font-bold">
+                      Adults*
+                    </label>
+                    <input
+                      type="number"
+                      min="1"
+                      required
+                      value={guestsCount}
+                      onChange={(e) => setGuestsCount(e.target.value)}
+                      className="w-full px-3 py-3 rounded-[4px] bg-[#f0eee9] border border-[#a9a5a3] text-[#5c5552] text-sm focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 transition"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-[15px] font-serif-royal text-[#6b6863] mb-2 font-bold">
+                      Kids
+                    </label>
+                    <input
+                      type="number"
+                      min="0"
+                      value={kidsCount}
+                      onChange={(e) => setKidsCount(e.target.value)}
+                      className="w-full px-3 py-3 rounded-[4px] bg-[#f0eee9] border border-[#a9a5a3] text-[#5c5552] text-sm focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 transition"
+                    />
+                  </div>
                 </div>
 
                 {/* Are you coming? */}

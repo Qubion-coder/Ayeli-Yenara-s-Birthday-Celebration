@@ -98,7 +98,7 @@ export default function App() {
                 <div className="w-full max-w-[200px] mx-auto h-px bg-gradient-to-r from-transparent via-pink-400 to-transparent my-3"></div>
                 
                 <div className="text-xs sm:text-sm font-bold text-slate-800 tracking-wide uppercase font-sans leading-relaxed">
-                  <p>Friday, 17 Oct 2025</p>
+                  <p>Saturday, 17 Oct 2026</p>
                   <p>6:00 PM</p>
                 </div>
                 
@@ -137,7 +137,7 @@ export default function App() {
             <div className="w-full relative min-h-[800px] flex flex-col items-center gap-16 md:gap-24 mt-8">
               
               <div className="w-full px-4 relative z-20 flex justify-center">
-                 <CountdownTimer targetDate="2025-10-17T18:00:00+05:30" />
+                 <CountdownTimer targetDate="2026-10-17T18:00:00+05:30" />
               </div>
 
               {/* KINDLY RSVP Circle */}
@@ -195,11 +195,22 @@ export default function App() {
             </div>
 
             {/* Footer */}
-            <footer className="mt-20 text-center text-xs text-slate-400 font-serif-royal pb-10">
+            <footer className="mt-20 text-center text-xs text-slate-400 font-serif-royal pb-10 flex flex-col items-center gap-1">
               <p className="flex items-center justify-center gap-1">
                 <span>Crafted with magic for</span>
                 <Heart className="w-3.5 h-3.5 text-pink-400 fill-pink-400" />
                 <span>Baby Menaya</span>
+              </p>
+              <p className="text-white text-[10px] sm:text-xs mt-2 font-sans tracking-wider">
+                Want a beautiful birthday invitation like this? Create yours with{' '}
+                <a 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  className="text-white hover:text-pink-200 underline transition-colors font-semibold" 
+                  href="https://wa.me/94707819074"
+                >
+                  invitemint
+                </a>
               </p>
             </footer>
 
