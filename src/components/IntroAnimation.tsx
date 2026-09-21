@@ -29,6 +29,14 @@ const getFileName = (path: string) => {
 export const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
   const [phase, setPhase] = useState<'idle' | 'enter' | 'exit'>('idle');
 
+  useEffect(() => {
+    images.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
+
+
   const startAnimation = () => {
     setPhase('enter');
 
