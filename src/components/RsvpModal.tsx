@@ -95,8 +95,8 @@ export const RsvpModal: React.FC<RsvpModalProps> = ({ isOpen, onClose, onRsvpSuc
       </div>
 
       {/* Light aesthetic modal matching the image, now with magical pink/blue/purple gradients */}
-      <div className="relative w-full max-w-md p-[6px] sm:p-[10px] bg-gradient-to-br from-pink-400 via-purple-400 to-blue-400 rounded-[2.5rem] shadow-[0_0_50px_rgba(192,132,252,0.5)] animate-pulse-glow" style={{ animationDuration: '4s' }}>
-        <div className="relative w-full h-full bg-[#fcfbfa] rounded-[2.1rem] p-8 sm:p-10 overflow-hidden max-h-[85vh] overflow-y-auto">
+      <div className="relative w-full max-w-md p-[2px] bg-gradient-to-br from-pink-300 via-purple-300 to-blue-300 rounded-[2.5rem] shadow-[0_20px_60px_rgba(192,132,252,0.4)] animate-pulse-glow" style={{ animationDuration: '4s' }}>
+        <div className="relative w-full h-full bg-white/90 backdrop-blur-2xl rounded-[2.4rem] p-8 sm:p-10 overflow-hidden max-h-[85vh] overflow-y-auto border border-white/50 shadow-inner">
 
           {/* Soft internal corner glows (Pink, Purple, Blue) */}
           <div className="absolute -top-20 -left-20 w-48 h-48 bg-pink-400/20 rounded-full blur-3xl pointer-events-none animate-pulse-glow" />
@@ -113,10 +113,12 @@ export const RsvpModal: React.FC<RsvpModalProps> = ({ isOpen, onClose, onRsvpSuc
 
           {submitted ? (
             <div className="text-center py-8 relative z-10">
-              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-pink-400 via-purple-400 to-blue-400 flex items-center justify-center text-white shadow-lg shadow-purple-300/50">
-                <CheckCircle2 className="w-10 h-10" />
+              <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-pink-300 via-purple-300 to-blue-300 p-1 shadow-[0_10px_30px_rgba(236,72,153,0.3)]">
+                <div className="w-full h-full bg-white rounded-full flex items-center justify-center">
+                  <CheckCircle2 className="w-10 h-10 text-pink-500" />
+                </div>
               </div>
-              <h3 className="font-cinzel text-2xl font-bold text-[#6b6863]">
+              <h3 className="font-cinzel text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-purple-600">
                 {attending ? "RSVP Accepted" : "RSVP Recorded"}
               </h3>
               <p className="text-sm text-[#8c8984] mt-2 font-serif-royal">
@@ -127,7 +129,7 @@ export const RsvpModal: React.FC<RsvpModalProps> = ({ isOpen, onClose, onRsvpSuc
 
               <button
                 onClick={onClose}
-                className="mt-6 px-6 py-2.5 rounded-sm bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 text-white hover:opacity-90 font-serif-royal text-lg shadow-md transition"
+                className="mt-8 px-10 py-3 rounded-full bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 text-white hover:opacity-90 font-sans tracking-widest uppercase text-sm font-bold shadow-lg shadow-pink-300/50 transition-all hover:scale-105"
               >
                 Close
               </button>
@@ -152,7 +154,7 @@ export const RsvpModal: React.FC<RsvpModalProps> = ({ isOpen, onClose, onRsvpSuc
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Name */}
                 <div>
-                  <label className="block text-[15px] font-serif-royal text-[#6b6863] mb-2 font-bold">
+                  <label className="block text-xs font-sans tracking-[0.2em] uppercase text-purple-900/70 mb-2 font-bold">
                     Name*
                   </label>
                   <input
@@ -160,14 +162,14 @@ export const RsvpModal: React.FC<RsvpModalProps> = ({ isOpen, onClose, onRsvpSuc
                     required
                     value={guestName}
                     onChange={(e) => setGuestName(e.target.value)}
-                    className="w-full px-3 py-3 rounded-[4px] bg-[#f0eee9] border border-[#a9a5a3] text-[#5c5552] text-sm focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 transition"
+                    className="w-full px-4 py-3.5 rounded-2xl bg-white/60 backdrop-blur-sm border border-white/80 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] text-purple-950 text-sm focus:outline-none focus:ring-2 focus:ring-pink-300 focus:bg-white transition-all"
                   />
                 </div>
 
                 {/* Number of guests */}
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-[15px] font-serif-royal text-[#6b6863] mb-2 font-bold">
+                    <label className="block text-xs font-sans tracking-[0.2em] uppercase text-purple-900/70 mb-2 font-bold">
                       Adults*
                     </label>
                     <input
@@ -176,11 +178,11 @@ export const RsvpModal: React.FC<RsvpModalProps> = ({ isOpen, onClose, onRsvpSuc
                       required
                       value={guestsCount}
                       onChange={(e) => setGuestsCount(e.target.value)}
-                      className="w-full px-3 py-3 rounded-[4px] bg-[#f0eee9] border border-[#a9a5a3] text-[#5c5552] text-sm focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 transition"
+                      className="w-full px-4 py-3.5 rounded-2xl bg-white/60 backdrop-blur-sm border border-white/80 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] text-purple-950 text-sm focus:outline-none focus:ring-2 focus:ring-pink-300 focus:bg-white transition-all"
                     />
                   </div>
                   <div>
-                    <label className="block text-[15px] font-serif-royal text-[#6b6863] mb-2 font-bold">
+                    <label className="block text-xs font-sans tracking-[0.2em] uppercase text-purple-900/70 mb-2 font-bold">
                       Kids
                     </label>
                     <input
@@ -188,23 +190,23 @@ export const RsvpModal: React.FC<RsvpModalProps> = ({ isOpen, onClose, onRsvpSuc
                       min="0"
                       value={kidsCount}
                       onChange={(e) => setKidsCount(e.target.value)}
-                      className="w-full px-3 py-3 rounded-[4px] bg-[#f0eee9] border border-[#a9a5a3] text-[#5c5552] text-sm focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 transition"
+                      className="w-full px-4 py-3.5 rounded-2xl bg-white/60 backdrop-blur-sm border border-white/80 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] text-purple-950 text-sm focus:outline-none focus:ring-2 focus:ring-pink-300 focus:bg-white transition-all"
                     />
                   </div>
                 </div>
 
                 {/* Are you coming? */}
                 <div>
-                  <label className="block text-[15px] font-serif-royal text-[#6b6863] mb-2 font-bold">
+                  <label className="block text-xs font-sans tracking-[0.2em] uppercase text-purple-900/70 mb-2 font-bold">
                     Are you coming?*
                   </label>
-                  <div className="flex flex-col gap-2">
+                  <div className="flex flex-col gap-3">
                     <button
                       type="button"
                       onClick={() => setAttending(true)}
-                      className={`w-full py-3 px-4 text-left rounded-[4px] transition text-[15px] font-serif-royal font-bold ${attending === true
-                          ? 'bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 text-white shadow-md'
-                          : 'bg-[#e5dfd8] text-[#6b6863] hover:bg-[#dcd5cd]'
+                      className={`w-full py-3.5 px-5 text-left rounded-2xl transition-all text-sm font-serif-royal italic font-bold border ${attending === true
+                          ? 'bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 text-white border-transparent shadow-[0_10px_20px_rgba(236,72,153,0.3)]'
+                          : 'bg-white/60 border-white/80 text-purple-900/70 hover:bg-white hover:shadow-sm'
                         }`}
                     >
                       Absolutely, wouldn't miss it!
@@ -213,9 +215,9 @@ export const RsvpModal: React.FC<RsvpModalProps> = ({ isOpen, onClose, onRsvpSuc
                     <button
                       type="button"
                       onClick={() => setAttending(false)}
-                      className={`w-full py-3 px-4 text-left rounded-[4px] transition text-[15px] font-serif-royal font-bold ${attending === false
-                          ? 'bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 text-white shadow-md'
-                          : 'bg-[#e5dfd8] text-[#6b6863] hover:bg-[#dcd5cd]'
+                      className={`w-full py-3.5 px-5 text-left rounded-2xl transition-all text-sm font-serif-royal italic font-bold border ${attending === false
+                          ? 'bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 text-white border-transparent shadow-[0_10px_20px_rgba(236,72,153,0.3)]'
+                          : 'bg-white/60 border-white/80 text-purple-900/70 hover:bg-white hover:shadow-sm'
                         }`}
                     >
                       Can't make it this time.
@@ -225,14 +227,14 @@ export const RsvpModal: React.FC<RsvpModalProps> = ({ isOpen, onClose, onRsvpSuc
 
                 {/* Leave a Wish */}
                 <div>
-                  <label className="block text-[15px] font-serif-royal text-[#6b6863] mb-2 font-bold">
-                    Leave a Magical Wish for Baby Menaya (Optional)
+                  <label className="block text-[10px] sm:text-xs font-sans tracking-[0.1em] sm:tracking-[0.2em] uppercase text-purple-900/70 mb-2 font-bold">
+                    Leave a Magical Wish (Optional)
                   </label>
                   <textarea
                     rows={2}
                     value={specialNote}
                     onChange={(e) => setSpecialNote(e.target.value)}
-                    className="w-full px-3 py-3 rounded-[4px] bg-[#f0eee9] border border-[#a9a5a3] text-[#5c5552] text-sm focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 resize-none transition"
+                    className="w-full px-4 py-3.5 rounded-2xl bg-white/60 backdrop-blur-sm border border-white/80 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] text-purple-950 text-sm focus:outline-none focus:ring-2 focus:ring-pink-300 focus:bg-white resize-none transition-all"
                   />
                 </div>
 
@@ -240,7 +242,7 @@ export const RsvpModal: React.FC<RsvpModalProps> = ({ isOpen, onClose, onRsvpSuc
                 <button
                   type="submit"
                   disabled={isSubmitting || attending === null}
-                  className="w-full mt-4 py-3 rounded-[4px] bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 hover:opacity-90 text-white font-serif-royal text-xl font-bold shadow-lg transition disabled:opacity-50 disabled:cursor-not-allowed text-center"
+                  className="w-full mt-6 py-4 rounded-full bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 hover:opacity-90 text-white font-sans tracking-[0.2em] uppercase text-sm font-bold shadow-[0_10px_30px_rgba(236,72,153,0.4)] transition-all disabled:opacity-50 disabled:cursor-not-allowed hover:scale-[1.02]"
                 >
                   Submit
                 </button>

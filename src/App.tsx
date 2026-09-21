@@ -5,12 +5,13 @@
 
 import React, { useState } from 'react';
 import { Sparkles, Crown, Calendar, Clock, MapPin, Heart, Flower2, Send, CheckCircle2, ChevronDown } from 'lucide-react';
-import { FairytaleEnvelope } from './components/FairytaleEnvelope';
+import { IntroAnimation } from './components/IntroAnimation';
 import { RoyalPortrait } from './components/RoyalPortrait';
 import { CountdownTimer } from './components/CountdownTimer';
 import { PartySchedule } from './components/PartySchedule';
 import { LocationMapSection } from './components/LocationMapSection';
 import { RsvpModal } from './components/RsvpModal';
+
 
 import { RoyalRegistry } from './components/RoyalRegistry';
 import { AudioPlayer } from './components/AudioPlayer';
@@ -42,14 +43,13 @@ export default function App() {
         <div className="absolute bottom-32 right-1/4 text-sky-200 text-2xl animate-float-delayed opacity-70">👑</div>
       </div>
 
-      {/* Section 1: Interactive Fairytale Opening Envelope */}
-      <FairytaleEnvelope
-        isOpen={envelopeOpened}
-        onOpen={() => setEnvelopeOpened(true)}
-        onReset={() => setEnvelopeOpened(false)}
-      />
+      {/* Section 1: Interactive Intro Animation */}
+      {!envelopeOpened && (
+        <IntroAnimation onComplete={() => setEnvelopeOpened(true)} />
+      )}
 
       {/* Main Scrapbook Wrapper */}
+
       <div className="relative z-10 w-full min-h-screen">
         <video 
           src="/bag.mp4" 
@@ -83,73 +83,75 @@ export default function App() {
               </div>
               
               {/* Photo placed perfectly inside the golden oval frame in the background image */}
-              <div className="absolute top-[16.5%] left-[27%] w-[46%] aspect-[3.2/4] rounded-full overflow-hidden mix-blend-multiply border-2 border-transparent">
-                <img src="/1.jpeg" className="w-full h-full object-cover scale-110" alt="Baby Menaya" />
+              <div className="absolute top-[16.5%] left-[27%] w-[46%] aspect-[3.2/4] rounded-full overflow-hidden mix-blend-multiply border-2 border-transparent flex items-center justify-center">
+                <img src="/1.jpeg" className="w-[95%] h-[95%] object-contain" alt="Baby Ayeli Yenara" />
               </div>
               
               {/* Main Invitation Text (positioned below the photo) */}
               <div className="absolute top-[48%] sm:top-[52%] left-0 w-full text-center space-y-2 sm:space-y-3 z-10 px-4">
                 <p className="font-serif-royal italic text-purple-900 font-bold text-sm sm:text-base">Please join us for</p>
                 <h1 className="font-cinzel text-3xl sm:text-4xl font-black text-pink-600 drop-shadow-md leading-tight">
-                  BABY MENAYA'S
+                  BABY AYELI YENARA'S
                   <span className="block text-xl sm:text-2xl mt-1 text-purple-700">BIRTHDAY CELEBRATION</span>
                 </h1>
                 
                 <div className="w-full max-w-[200px] mx-auto h-px bg-gradient-to-r from-transparent via-pink-400 to-transparent my-3"></div>
                 
                 <div className="text-xs sm:text-sm font-bold text-slate-800 tracking-wide uppercase font-sans leading-relaxed">
-                  <p>Saturday, 17 Oct 2026</p>
-                  <p>6:00 PM</p>
+                  <p>Saturday, 10 Oct 2026</p>
+                  <p>06:30 PM onwards</p>
                 </div>
                 
                 <div className="text-[10px] sm:text-xs text-slate-800 italic mt-1 font-semibold">
-                  <p className="font-bold">Samara Banquet Hall</p>
-                  <p>Gampaha</p>
+                  <p className="font-bold">Madu River Reach Hotel</p>
+                  <p>Royal Ballroom</p>
+                  <p className="mt-2 not-italic">Kasun De Silva (Father): 0719713292</p>
+                  <p className="not-italic">Vinuri Yasora (Mother): 0714771575</p>
                 </div>
               </div>
             </div>
 
-            <div className="w-full px-4 relative z-10">
-              <div className="mx-auto max-w-[760px] rounded-[30px] border border-pink-200/40 bg-white/10 p-4 shadow-[0_20px_50px_rgba(80,22,59,0.18)] backdrop-blur-sm sm:p-6">
-                <div className="mb-4 text-center">
-                  <p className="font-cinzel text-[10px] uppercase tracking-[0.35em] text-rose-900/70 sm:text-xs">
-                    Our little star
-                  </p>
-                </div>
-                <div className="grid grid-cols-3 gap-3 sm:gap-5">
-                  {["/pre/ChatGPT Image Sep 11, 2026, 03_36_55 AM.png", "/pre/ChatGPT Image Sep 11, 2026, 03_40_12 AM.png", "/pre/ChatGPT Image Sep 11, 2026, 03_41_57 AM.png"].map((image, index) => (
-                    <div
-                      key={image}
-                      className={`overflow-hidden rounded-[24px] border border-white/40 bg-white/5 shadow-lg ${index === 1 ? 'translate-y-3 sm:translate-y-5' : ''}`}
-                    >
-                      <img
-                        src={image}
-                        alt="Baby Menaya memory"
-                        className="h-44 w-full object-cover object-center transition duration-500 hover:scale-105 sm:h-56"
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+
 
             {/* Collage Elements Grid */}
             <div className="w-full relative min-h-[800px] flex flex-col items-center gap-16 md:gap-24 mt-8">
               
               <div className="w-full px-4 relative z-20 flex justify-center">
-                 <CountdownTimer targetDate="2026-10-17T18:00:00+05:30" />
+                 <CountdownTimer targetDate="2026-10-10T18:30:00+05:30" />
               </div>
 
-              {/* KINDLY RSVP Circle */}
-              <div className="relative group cursor-pointer" onClick={() => setIsRsvpOpen(true)}>
-                <div className="w-48 h-48 rounded-full border-[6px] border-pink-300 bg-white/80 backdrop-blur-sm flex flex-col items-center justify-center shadow-lg transition-transform group-hover:scale-105 z-20 relative">
-                  <span className="font-serif-royal italic text-purple-800 text-xl">Kindly</span>
-                  <span className="font-cinzel font-black text-pink-500 text-4xl mt-1">RSVP</span>
-                  {userRsvp && <CheckCircle2 className="w-5 h-5 text-emerald-500 mt-2" />}
+              {/* PREMIUM RSVP SECTION */}
+              <div className="relative w-full max-w-[550px] px-4 cursor-pointer group my-8" onClick={() => setIsRsvpOpen(true)}>
+                <div className="absolute inset-0 bg-gradient-to-r from-pink-300/40 via-purple-300/40 to-blue-300/40 rounded-[2rem] blur-xl transition-all duration-700 group-hover:blur-2xl group-hover:opacity-100 opacity-60"></div>
+                <div className="relative w-full bg-white/70 backdrop-blur-xl border border-white/90 rounded-[2rem] p-8 sm:p-12 shadow-[0_20px_60px_rgba(0,0,0,0.1)] flex flex-col items-center justify-center text-center overflow-hidden transition-all duration-500 group-hover:bg-white/90 group-hover:-translate-y-1">
+                  
+                  {/* Decorative internal elegant borders */}
+                  <div className="absolute top-4 left-4 w-12 h-12 border-t border-l border-pink-400/50 rounded-tl-2xl"></div>
+                  <div className="absolute bottom-4 right-4 w-12 h-12 border-b border-r border-pink-400/50 rounded-br-2xl"></div>
+                  
+                  <div className="absolute -top-10 -right-10 w-40 h-40 bg-pink-200/40 rounded-full blur-3xl"></div>
+                  <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-blue-200/40 rounded-full blur-3xl"></div>
+
+                  <span className="font-serif-royal italic text-purple-900/70 text-xl sm:text-2xl mb-1 relative z-10 font-bold">
+                    We would be delighted
+                  </span>
+                  <span className="font-cinzel font-black text-transparent bg-clip-text bg-gradient-to-r from-pink-600 via-purple-600 to-pink-600 text-4xl sm:text-5xl tracking-[0.2em] uppercase mt-2 relative z-10 drop-shadow-sm">
+                    RSVP
+                  </span>
+                  
+                  <p className="mt-6 font-sans text-[10px] sm:text-xs text-slate-500 font-bold tracking-[0.3em] uppercase flex items-center gap-2 relative z-10 transition-colors group-hover:text-pink-600">
+                    <Sparkles className="w-3.5 h-3.5 text-pink-400" />
+                    Click here to respond
+                    <Sparkles className="w-3.5 h-3.5 text-pink-400" />
+                  </p>
+
+                  {userRsvp && (
+                    <div className="mt-6 flex items-center gap-2 bg-emerald-50/80 text-emerald-600 px-5 py-2.5 rounded-full border border-emerald-200/50 shadow-sm relative z-10 backdrop-blur-md">
+                      <CheckCircle2 className="w-4 h-4" />
+                      <span className="text-xs font-bold uppercase tracking-widest">Response Received</span>
+                    </div>
+                  )}
                 </div>
-                {/* Decorative bits around RSVP */}
-                <div className="absolute -bottom-4 -left-8 text-3xl animate-bounce">🌸</div>
-                <div className="absolute top-0 -right-6 text-2xl animate-float-slow">🦋</div>
               </div>
 
               {/* PARTY SCHEDULE */}
@@ -183,9 +185,9 @@ export default function App() {
                   <div className="absolute -top-5 -left-5 text-3xl animate-float-delayed z-20">🦋</div>
                   <div className="absolute -bottom-4 -right-4 text-3xl animate-float-slow z-20">🌸</div>
                   <LocationMapSection 
-                    venueName="Samara Banquet Hall" 
-                    address="No. 71/2/A, Yakkala Road, Bandarawatta, Gampaha" 
-                    mapsUrl="https://maps.app.goo.gl/syzAERatEEDNx7bu5" 
+                    venueName="Madu River Reach Hotel" 
+                    address="Royal Ballroom" 
+                    mapsUrl="https://maps.app.goo.gl/cT7iun8JNQXSD39T9" 
                   />
                 </div>
               </div>
@@ -199,7 +201,7 @@ export default function App() {
               <p className="flex items-center justify-center gap-1">
                 <span>Crafted with magic for</span>
                 <Heart className="w-3.5 h-3.5 text-pink-400 fill-pink-400" />
-                <span>Baby Menaya</span>
+                <span>Baby Ayeli Yenara</span>
               </p>
               <p className="text-white text-[10px] sm:text-xs mt-2 font-sans tracking-wider">
                 Want a beautiful birthday invitation like this? Create yours with{' '}

@@ -58,14 +58,7 @@ export const FairytaleEnvelope: React.FC<FairytaleEnvelopeProps> = ({
           className={`fixed inset-0 z-50 w-full h-[100dvh] bg-slate-950 flex flex-col items-center justify-center cursor-pointer transition-all duration-700 ${isOpening ? 'scale-95 opacity-0 pointer-events-none' : 'opacity-100'}`} 
           onClick={handleOpenEnvelope}
         >
-          <video 
-            src="/invitation-cover.mp4" 
-            autoPlay 
-            loop 
-            muted 
-            playsInline
-            className="w-full h-full object-cover sm:object-contain sm:h-full" 
-          />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-900 via-purple-950 to-slate-900" />
 
           <div className="absolute top-8 left-1/2 -translate-x-1/2 z-10">
             <div className="rounded-full border border-[#7a4f2d]/30 bg-[#f9f2e7]/80 px-4 py-2 shadow-[0_10px_30px_rgba(0,0,0,0.16)] backdrop-blur-sm sm:px-6">
@@ -84,10 +77,10 @@ export const FairytaleEnvelope: React.FC<FairytaleEnvelopeProps> = ({
               transition={{ duration: 1.5, repeat: Infinity }}
               className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 w-full px-4 z-10"
             >
-              <div className="px-8 py-3 rounded-full bg-black/50 backdrop-blur-md border border-pink-300/40 text-base font-bold font-sans shadow-2xl text-pink-100 flex items-center gap-3 whitespace-nowrap">
-                <Sparkles className="w-5 h-5 text-amber-400 animate-pulse" />
-                Tap anywhere to open
-                <Sparkles className="w-5 h-5 text-amber-400 animate-pulse" />
+              <div className="px-10 py-4 rounded-full bg-pink-500/20 backdrop-blur-md border-2 border-pink-400 text-lg sm:text-xl font-bold font-serif-royal shadow-[0_0_40px_rgba(236,72,153,0.5)] text-pink-100 flex items-center gap-3 whitespace-nowrap transition-transform hover:scale-105 hover:bg-pink-500/30">
+                <Sparkles className="w-6 h-6 text-pink-300 animate-pulse" />
+                View Invitation
+                <Sparkles className="w-6 h-6 text-pink-300 animate-pulse" />
               </div>
             </motion.div>
           )}

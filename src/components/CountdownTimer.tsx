@@ -18,7 +18,7 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({ targetDate }) =>
       let target = new Date(targetDate).getTime();
       const now = Date.now();
 
-      // If the target date is in the past, roll forward to the next upcoming 17th of October
+      // If the target date is in the past, roll forward to the next upcoming 10th of October
       // so the countdown timer always shows an active, ticking countdown!
       if (isNaN(target) || target <= now) {
         const d = new Date(targetDate);
@@ -95,7 +95,7 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({ targetDate }) =>
       <div className="mt-4 pt-3 border-t border-pink-500/20 text-center">
         <p className="text-[11px] sm:text-xs text-pink-200/80 font-serif-royal italic flex items-center justify-center gap-1.5">
           <Crown className="w-3.5 h-3.5 text-amber-300 inline" />
-          <span>Baby Menaya's Fairytale Birthday • 6:00 PM</span>
+          <span>Baby Ayeli Yenara's Fairytale Birthday • 06:30 PM</span>
           <Crown className="w-3.5 h-3.5 text-amber-300 inline" />
         </p>
       </div>

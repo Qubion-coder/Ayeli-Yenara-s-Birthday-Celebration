@@ -13,7 +13,7 @@ export const PartySchedule: React.FC = () => {
     {
       time: "7:00 PM",
       title: "Birthday Cake & Celebration",
-      description: "Gather around for Baby Menaya's cake cutting ceremony and special musical wishes.",
+      description: "Gather around for Baby Ayeli Yenara's cake cutting ceremony and special musical wishes.",
       icon: "🎂",
     },
     {
@@ -40,7 +40,7 @@ export const PartySchedule: React.FC = () => {
           Party Schedule
         </h2>
         <p className="text-xs sm:text-sm text-pink-700 font-serif-royal italic mt-1 font-semibold">
-          6:00 PM onwards • Samara Banquet Hall, Gampaha
+          06:30 PM onwards • Madu River Reach Hotel, Royal Ballroom
         </p>
       </div>
 

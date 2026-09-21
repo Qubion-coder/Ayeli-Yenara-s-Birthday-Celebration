@@ -5,7 +5,7 @@ export const RoyalRegistry: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'menaya' | 'wishingWell'>('menaya');
 
   const menayaItems = [
-    { title: "Fairytale Picture Books & Soft Plushies", category: "Books & Toys", note: "Baby Menaya loves colorful touch-and-feel books!" },
+    { title: "Fairytale Picture Books & Soft Plushies", category: "Books & Toys", note: "Baby Ayeli Yenara loves colorful touch-and-feel books!" },
     { title: "Wooden Montessori Activity Toys", category: "Milestones", note: "Interactive and learning sensory toys" },
     { title: "Fairy Dress & Princess Hair Accessories", category: "Keepsakes", note: "Cute toddler princess outfits" }
   ];
@@ -20,7 +20,7 @@ export const RoyalRegistry: React.FC = () => {
           Royal Gift Registry
         </h2>
         <p className="text-xs sm:text-sm text-pink-700 font-serif-royal italic mt-1">
-          Your presence is our greatest present! For those who wish to honor Baby Menaya:
+          Your presence is our greatest present! For those who wish to honor Baby Ayeli Yenara:
         </p>
       </div>
 
@@ -34,7 +34,7 @@ export const RoyalRegistry: React.FC = () => {
               : 'text-purple-900 hover:bg-pink-200/60'
           }`}
         >
-          🌸 Baby Menaya's Wishlist
+          🌸 Baby Ayeli Yenara's Wishlist
         </button>
 
         <button
@@ -59,10 +59,10 @@ export const RoyalRegistry: React.FC = () => {
             Fairytale Blessing Jar & Wishing Well
           </h3>
           <p className="text-xs sm:text-sm text-slate-700 mt-2 max-w-lg mx-auto font-serif-royal leading-relaxed">
-            If you wish to give a gift, a contribution towards Little Baby Menaya's future in our Wishing Well on party day would be warmly appreciated!
+            If you wish to give a gift, a contribution towards Little Baby Ayeli Yenara's future in our Wishing Well on party day would be warmly appreciated!
           </p>
           <div className="mt-4 inline-block px-4 py-2 rounded-xl bg-purple-900 text-amber-200 text-xs font-bold">
-            🎁 A Wishing Well box will be placed at Samara Banquet Hall Gampaha
+            🎁 A Wishing Well box will be placed at Madu River Reach Hotel, Royal Ballroom
           </div>
         </div>
       ) : (

@@ -13,12 +13,12 @@ export const RoyalPortrait: React.FC = () => {
       </div>
 
       <div className="relative overflow-hidden rounded-[22px] bg-slate-900 aspect-[3/4] flex flex-col justify-end p-6 text-center text-white">
-        {/* Render Actual Photo of Baby Menaya */}
+        {/* Render Actual Photo of Baby Ayeli Yenara */}
         <div className="absolute inset-0 bg-gradient-to-b from-indigo-950 via-purple-950 to-pink-950">
           {/* Celestial background stars overlaying the photo */}
           <div className="absolute inset-0 opacity-40 bg-[radial-gradient(#f472b6_1px,transparent_1px)] [background-size:16px_16px] z-10 pointer-events-none" />
 
-          <img src="/1.jpeg" alt="Baby Menaya" className="w-full h-full object-cover opacity-90" />
+          <img src="/1.jpeg" alt="Baby Ayeli Yenara" className="w-full h-full object-cover opacity-90" />
         </div>
 
         {/* Overlay Banner text inside image */}
@@ -27,7 +27,7 @@ export const RoyalPortrait: React.FC = () => {
             <Crown className="w-3.5 h-3.5" /> Fairytale Royal Celebration
           </span>
           <h3 className="font-cinzel text-xl font-bold text-amber-200 drop-shadow">
-            Baby Menaya
+            Baby Ayeli Yenara
           </h3>
           <p className="text-xs text-pink-200 mt-1 font-serif-royal italic">
             "A Magical Fairytale Celebration in the Enchanted Kingdom"
@@ -38,7 +38,7 @@ export const RoyalPortrait: React.FC = () => {
       <div className="mt-3 text-center px-2 pb-1">
         <p className="text-xs text-pink-200/90 font-medium flex items-center justify-center gap-1">
           <Heart className="w-3.5 h-3.5 text-pink-400 fill-pink-400" />
-          Baby Menaya's Birthday Celebration
+          Baby Ayeli Yenara's Birthday Celebration
           <Heart className="w-3.5 h-3.5 text-pink-400 fill-pink-400" />
         </p>
       </div>

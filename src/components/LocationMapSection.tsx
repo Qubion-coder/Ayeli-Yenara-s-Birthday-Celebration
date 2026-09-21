@@ -8,20 +8,20 @@ interface LocationMapSectionProps {
 }
 
 export const LocationMapSection: React.FC<LocationMapSectionProps> = ({
-  venueName = "Samara Banquet Hall",
-  address = "No. 71/2/A, Yakkala Road, Bandarawatta, Gampaha",
-  mapsUrl = "https://maps.app.goo.gl/syzAERatEEDNx7bu5"
+  venueName = "Madu River Reach Hotel",
+  address = "Royal Ballroom",
+  mapsUrl = "https://maps.app.goo.gl/cT7iun8JNQXSD39T9"
 }) => {
-  const encodedAddress = encodeURIComponent(`${venueName}, Gampaha, Sri Lanka`);
-  const directMapsUrl = mapsUrl || "https://maps.app.goo.gl/syzAERatEEDNx7bu5";
+  const encodedAddress = encodeURIComponent(`${venueName}, Balapitiya, Sri Lanka`);
+  const directMapsUrl = mapsUrl || "https://maps.app.goo.gl/cT7iun8JNQXSD39T9";
 
   // Calendar event generator
   const createGoogleCalendarLink = () => {
-    // 17th October 2026 6:00 PM Sri Lanka Time (UTC+5:30) -> 12:30 UTC to 16:30 UTC
-    const title = encodeURIComponent("Baby Menaya's Birthday Celebration");
-    const details = encodeURIComponent("Join us for a magical fairytale celebration for Baby Menaya at Samara Banquet Hall, Gampaha!");
+    // 10th October 2026 6:30 PM Sri Lanka Time (UTC+5:30) -> 13:00 UTC to 17:00 UTC
+    const title = encodeURIComponent("Baby Ayeli Yenara's Birthday Celebration");
+    const details = encodeURIComponent("Join us for a magical fairytale celebration for Baby Ayeli Yenara at Madu River Reach Hotel, Royal Ballroom!");
     const location = encodeURIComponent(`${venueName}, ${address}`);
-    return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=20261017T123000Z/20261017T163000Z&details=${details}&location=${location}`;
+    return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=20261010T130000Z/20261010T170000Z&details=${details}&location=${location}`;
   };
 
   const downloadIcsFile = () => {
@@ -29,11 +29,11 @@ export const LocationMapSection: React.FC<LocationMapSectionProps> = ({
       'BEGIN:VCALENDAR',
       'VERSION:2.0',
       'BEGIN:VEVENT',
-      'SUMMARY:Baby Menaya Birthday Celebration',
-      'DESCRIPTION:Fairytale birthday celebration for Baby Menaya at Samara Banquet Hall, Gampaha.',
+      'SUMMARY:Baby Ayeli Yenara Birthday Celebration',
+      'DESCRIPTION:Fairytale birthday celebration for Baby Ayeli Yenara at Madu River Reach Hotel, Royal Ballroom.',
       'LOCATION:' + venueName + ', ' + address,
-      'DTSTART:20261017T123000Z',
-      'DTEND:20261017T163000Z',
+      'DTSTART:20261010T130000Z',
+      'DTEND:20261010T170000Z',
       'END:VEVENT',
       'END:VCALENDAR'
     ].join('\n');
@@ -41,7 +41,7 @@ export const LocationMapSection: React.FC<LocationMapSectionProps> = ({
     const blob = new Blob([csContent], { type: 'text/calendar;charset=utf-8' });
     const link = document.createElement('a');
     link.href = window.URL.createObjectURL(blob);
-    link.setAttribute('download', 'Baby_Menaya_Birthday.ics');
+    link.setAttribute('download', 'Baby_Ayeli_Yenara_Birthday.ics');
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -77,7 +77,7 @@ export const LocationMapSection: React.FC<LocationMapSectionProps> = ({
       {/* Embedded Map Visual Frame */}
       <div className="relative w-full h-52 sm:h-64 rounded-2xl overflow-hidden border border-pink-400/30 shadow-inner bg-slate-800">
         <iframe
-          title="Samara Banquet Hall Location Map"
+          title="Madu River Reach Hotel Location Map"
           width="100%"
           height="100%"
           style={{ border: 0, filter: 'contrast(1.05) opacity(0.9)' }}
@@ -90,7 +90,7 @@ export const LocationMapSection: React.FC<LocationMapSectionProps> = ({
       {/* Add to Calendar Actions */}
       <div className="mt-6 pt-4 border-t border-slate-800 flex flex-wrap items-center justify-between gap-3">
         <span className="text-xs font-serif-royal text-pink-200/80 italic">
-          ✨ Saturday, 17th October 2026 • 6:00 PM
+          ✨ Saturday, 10th October 2026 • 06:30 PM
         </span>
 
         <div className="flex items-center gap-2">
