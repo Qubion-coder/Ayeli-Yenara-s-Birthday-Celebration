@@ -179,6 +179,13 @@ export const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) =>
                 <img src={src} alt={`Intro ${index}`} className="w-full h-full object-contain bg-white" />
                 <div className="absolute inset-0 bg-black/5" />
               </div>
+
+              {/* Creative Corner Decor */}
+              <motion.div animate={{ rotate: [0, 15, -5, 0], y: [0, -8, 0] }} transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }} className="absolute -top-6 -left-6 sm:-top-8 sm:-left-8 text-4xl sm:text-6xl drop-shadow-lg z-20">🦋</motion.div>
+              <motion.div animate={{ scale: [1, 1.3, 1], rotate: [0, 90, 180] }} transition={{ repeat: Infinity, duration: 3, ease: "linear" }} className="absolute -top-4 -right-4 sm:-top-6 sm:-right-6 text-3xl sm:text-5xl text-pink-dusty drop-shadow-lg z-20">✨</motion.div>
+              <motion.div animate={{ rotate: [0, -10, 10, 0], y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }} className="absolute -bottom-6 -right-6 sm:-bottom-10 sm:-right-10 text-5xl sm:text-7xl drop-shadow-lg z-20">🦋</motion.div>
+              <motion.div animate={{ scale: [1, 1.4, 1], opacity: [0.6, 1, 0.6] }} transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }} className="absolute bottom-6 -left-4 sm:bottom-8 sm:-left-6 text-2xl sm:text-4xl text-pink-dusty drop-shadow-lg z-20">✨</motion.div>
+
               <div className="absolute bottom-2 sm:bottom-4 left-0 w-full text-center px-2">
                 <p className="font-serif-royal italic text-sm sm:text-xl font-bold text-pink-950/80 tracking-widest truncate">
                   {getFileName(src)}
@@ -189,14 +196,7 @@ export const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) =>
         })}
       </AnimatePresence>
       
-      {/* Sparkles background during animation */}
-      {(phase === 'enter' || phase === 'message') && (
-        <div className="absolute inset-0 pointer-events-none z-40">
-          <div className="absolute top-1/4 left-1/4 text-pink-dusty text-xl animate-float-slow">✨</div>
-          <div className="absolute top-1/3 right-1/4 text-olive-light text-2xl animate-float-delayed">🦋</div>
-          <div className="absolute bottom-1/3 left-1/3 text-pink-dusty text-lg animate-float-slow opacity-80">✨</div>
-        </div>
-      )}
+      {/* Background decorations removed as requested to place them on images */}
 
       {/* Final Message */}
       <AnimatePresence>
