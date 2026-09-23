@@ -48,16 +48,16 @@ export const LocationMapSection: React.FC<LocationMapSectionProps> = ({
   };
 
   return (
-    <div className="w-full my-8 p-6 sm:p-8 rounded-3xl bg-slate-900/90 text-white border border-pink-500/30 backdrop-blur-md shadow-xl">
+    <div className="w-full my-8 p-6 sm:p-8 rounded-3xl bg-white/90 text-olive-dark border border-olive-light/50 backdrop-blur-md shadow-xl">
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
         <div>
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-pink-500/20 text-pink-300 text-xs font-bold font-cinzel mb-2 border border-pink-400/30">
-            <MapPin className="w-3.5 h-3.5 text-pink-400" /> Venue & Location
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-ivory text-olive-dark text-xs font-bold font-cinzel mb-2 border border-olive-light/40">
+            <MapPin className="w-3.5 h-3.5 text-olive-light" /> Venue & Location
           </div>
-          <h2 className="font-cinzel text-2xl sm:text-3xl font-bold text-amber-200">
+          <h2 className="font-cinzel text-2xl sm:text-3xl font-bold text-pink-dusty">
             {venueName}
           </h2>
-          <p className="text-xs sm:text-sm text-pink-200/90 mt-1 flex items-center gap-1">
+          <p className="text-xs sm:text-sm text-olive-dark/90 mt-1 flex items-center gap-1">
             <span>📍 {address}</span>
           </p>
         </div>
@@ -66,7 +66,7 @@ export const LocationMapSection: React.FC<LocationMapSectionProps> = ({
           href={directMapsUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold text-xs sm:text-sm shadow-lg shadow-pink-500/20 transition active:scale-95"
+          className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-olive-dark to-olive-light hover:opacity-90 text-white font-bold text-xs sm:text-sm shadow-lg shadow-olive-light/30 transition active:scale-95"
         >
           <Navigation className="w-4 h-4" />
           <span>Get Directions</span>
@@ -75,7 +75,7 @@ export const LocationMapSection: React.FC<LocationMapSectionProps> = ({
       </div>
 
       {/* Embedded Map Visual Frame */}
-      <div className="relative w-full h-52 sm:h-64 rounded-2xl overflow-hidden border border-pink-400/30 shadow-inner bg-slate-800">
+      <div className="relative w-full h-52 sm:h-64 rounded-2xl overflow-hidden border border-olive-light/40 shadow-inner bg-ivory">
         <iframe
           title="Madu River Reach Hotel Location Map"
           width="100%"
@@ -88,9 +88,9 @@ export const LocationMapSection: React.FC<LocationMapSectionProps> = ({
       </div>
 
       {/* Add to Calendar Actions */}
-      <div className="mt-6 pt-4 border-t border-slate-800 flex flex-wrap items-center justify-between gap-3">
-        <span className="text-xs font-serif-royal text-pink-200/80 italic">
-          ✨ Saturday, 10th October 2026 • 06:30 PM
+      <div className="mt-6 pt-4 border-t border-olive-light/30 flex flex-wrap items-center justify-between gap-3">
+        <span className="text-xs font-serif-royal text-olive-dark/80 italic">
+          ✨ Saturday, 10th October 2026 • 6.30 pm
         </span>
 
         <div className="flex items-center gap-2">
@@ -98,17 +98,17 @@ export const LocationMapSection: React.FC<LocationMapSectionProps> = ({
             href={createGoogleCalendarLink()}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-pink-200 text-xs font-semibold border border-pink-400/20 transition"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-ivory hover:bg-pink-pale text-olive-dark text-xs font-semibold border border-olive-light/30 transition"
           >
-            <CalendarIcon className="w-3.5 h-3.5 text-amber-300" />
+            <CalendarIcon className="w-3.5 h-3.5 text-pink-dusty" />
             <span>Google Calendar</span>
           </a>
 
           <button
             onClick={downloadIcsFile}
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-pink-200 text-xs font-semibold border border-pink-400/20 transition"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-ivory hover:bg-pink-pale text-olive-dark text-xs font-semibold border border-olive-light/30 transition"
           >
-            <Download className="w-3.5 h-3.5 text-cyan-300" />
+            <Download className="w-3.5 h-3.5 text-olive-light" />
             <span>iCal / Apple</span>
           </button>
         </div>

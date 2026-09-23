@@ -27,7 +27,7 @@ const getFileName = (path: string) => {
 };
 
 export const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
-  const [phase, setPhase] = useState<'idle' | 'enter' | 'exit'>('idle');
+  const [phase, setPhase] = useState<'idle' | 'intro_text' | 'enter' | 'message' | 'exit'>('idle');
 
   useEffect(() => {
     images.forEach((src) => {
@@ -38,17 +38,29 @@ export const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) =>
 
 
   const startAnimation = () => {
-    setPhase('enter');
+    setPhase('intro_text');
 
-    // Images fall one by one. Hold them for a bit.
+    // Show intro text for a few seconds, then start image sequence
+    const enterTimer = setTimeout(() => {
+      setPhase('enter');
+    }, 4500);
+
+    // Total duration for 13 images:
+    // duration 2.4s, exit starts at 1.92s
+    // 12 * 1.92 + 2.4 = 25.44s
+    const messageTimer = setTimeout(() => {
+      setPhase('message');
+    }, 30500); // 4500 + 26000
+
+    // Fade out message and transition
     const exitTimer = setTimeout(() => {
       setPhase('exit');
-    }, 12000);
+    }, 40500);
 
     // Call onComplete after exit animation finishes
     const completeTimer = setTimeout(() => {
       onComplete();
-    }, 13500);
+    }, 41500);
   };
 
   return (
@@ -64,7 +76,7 @@ export const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) =>
       />
       
       {/* Optional dark overlay to make images and button pop */}
-      <div className="absolute inset-0 bg-slate-950/40 -z-10" />
+      <div className="absolute inset-0 bg-ivory/60 -z-10" />
       
       {phase === 'idle' && (
         <motion.div
@@ -74,68 +86,101 @@ export const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) =>
           className="z-10 flex flex-col items-center gap-6 sm:gap-8 px-4 text-center"
         >
           <div className="space-y-3">
-            <p className="font-cinzel text-xs sm:text-sm tracking-[0.35em] uppercase text-purple-950 font-extrabold drop-shadow-[0_2px_4px_rgba(255,255,255,0.8)]">
+            <p className="font-cinzel text-xs sm:text-sm tracking-[0.35em] uppercase text-olive-dark font-extrabold drop-shadow-[0_2px_4px_rgba(255,255,255,0.8)]">
               You are warmly invited to
             </p>
-            <h1 className="font-cinzel text-4xl sm:text-6xl font-black text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)] tracking-wide">
+            <h1 className="font-cinzel text-4xl sm:text-6xl font-black text-pink-deep drop-shadow-[0_4px_12px_rgba(255,255,255,0.6)] tracking-wide">
               Ayeli Yenara's
             </h1>
-            <h2 className="font-serif-royal text-2xl sm:text-4xl italic text-purple-950 font-bold drop-shadow-[0_2px_4px_rgba(255,255,255,0.8)] mt-2">
+            <h2 className="font-serif-royal text-2xl sm:text-4xl italic text-olive-dark font-bold drop-shadow-[0_2px_4px_rgba(255,255,255,0.8)] mt-2">
               Birthday Celebration
             </h2>
           </div>
 
           <button
             onClick={startAnimation}
-            className="mt-6 px-10 py-4 rounded-full bg-white/95 backdrop-blur-md border border-white/50 text-lg sm:text-xl font-bold font-serif-royal shadow-[0_10px_40px_rgba(0,0,0,0.4)] text-purple-950 flex items-center gap-3 whitespace-nowrap transition-transform hover:scale-105 hover:bg-white"
+            className="mt-6 px-10 py-4 rounded-full bg-ivory/95 backdrop-blur-md border border-white/50 text-lg sm:text-xl font-bold font-serif-royal shadow-[0_10px_40px_rgba(0,0,0,0.2)] text-olive-dark flex items-center gap-3 whitespace-nowrap transition-transform hover:scale-105 hover:bg-white"
           >
-            <Sparkles className="w-5 h-5 text-pink-500" />
+            <Sparkles className="w-5 h-5 text-pink-dusty" />
             Open Invitation
-            <Sparkles className="w-5 h-5 text-pink-500" />
+            <Sparkles className="w-5 h-5 text-pink-dusty" />
           </button>
         </motion.div>
       )}
 
+      {/* Intro Text Phase */}
+      <AnimatePresence>
+        {phase === 'intro_text' && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0, scale: 1.05, filter: "blur(10px)" }}
+            transition={{ duration: 1.5, ease: "easeInOut" }}
+            className="z-50 absolute inset-0 flex items-center justify-center p-8 bg-ivory/80 backdrop-blur-sm"
+          >
+            <div className="max-w-3xl text-center space-y-6">
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5, duration: 1.5 }}
+                className="font-serif-royal text-2xl sm:text-4xl lg:text-5xl text-olive-dark italic font-medium leading-relaxed drop-shadow-md"
+              >
+                Once upon a time.. 
+              </motion.p>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 2.0, duration: 1.5 }}
+                className="font-cinzel text-xl sm:text-3xl lg:text-4xl text-pink-dusty font-bold leading-relaxed drop-shadow-md"
+              >
+                a tiny butterfly came into our world 🌸
+              </motion.p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <AnimatePresence>
         {phase !== 'idle' && images.map((src, index) => {
-          // Generate a deterministic random look for each image
-          const rotations = [-12, 14, -8, 10, -15, 12, -6, 9, -11, 15, -9, 7, -14];
-          
-          // Spread 13 images all around the screen to fill all empty space nicely
-          const xOffsets = [
-            "-32vw", "28vw", "-15vw", "15vw", "-28vw", "32vw", "0vw",
-            "-22vw", "22vw", "-35vw", "35vw", "-10vw", "10vw"
-          ];
-          const yOffsets = [
-            "-35vh", "-30vh", "-15vh", "-10vh", "15vh", "10vh", "0vh",
-            "35vh", "30vh", "-5vh", "5vh", "25vh", "-25vh"
-          ];
-          
           const colors = ["#fbcfe8", "#fce7f3", "#f9a8d4", "#f472b6", "#ec4899", "#fdf2f8", "#fce7f3"];
 
           return (
             <motion.div
               key={src}
-              initial={{ y: "-120vh", rotate: rotations[index % rotations.length], x: xOffsets[index % xOffsets.length], opacity: 1 }}
-              animate={{
-                y: phase === 'enter' ? yOffsets[index % yOffsets.length] : "120vh",
-                rotate: rotations[index % rotations.length],
-                x: xOffsets[index % xOffsets.length]
+              initial={{ 
+                opacity: 0, 
+                scale: 0.5, 
+                x: "-100vw", 
+                y: 0,
+                rotate: -20
               }}
-              transition={{
-                y: phase === 'enter'
-                  ? { delay: index * 0.7, duration: 2.5, ease: "easeOut" }
-                  : { duration: 1.5, ease: "easeInOut", delay: index * 0.1 } // Exit sequentially too, slightly staggered
-              }}
-              className="absolute w-40 h-52 sm:w-[26rem] sm:h-[34rem] shadow-[0_20px_50px_rgba(0,0,0,0.25)] p-1.5 sm:p-4 pb-6 sm:pb-12 rounded-sm border border-white/20"
+              animate={
+                phase === 'enter' ? {
+                  opacity: [0, 1, 1, 0],
+                  scale: [0.5, 1, 1.05, 0.5],
+                  x: ["-100vw", "0vw", "0vw", "100vw"],
+                  rotate: [-20, 0, 0, 20]
+                } : {
+                  opacity: 0
+                }
+              }
+              transition={
+                phase === 'enter' ? {
+                  duration: 2.4,
+                  times: [0, 0.2, 0.8, 1], // 0-0.48s: enter, 0.48-1.92s: stay, 1.92-2.4s: exit
+                  delay: index * 1.92, // Next image enters exactly as this one exits
+                  ease: "easeInOut"
+                } : { duration: 0.5 }
+              }
+              className="absolute w-[80vw] h-[65vh] sm:w-[40rem] sm:h-[50rem] max-w-[95vw] max-h-[85vh] shadow-[0_20px_50px_rgba(0,0,0,0.4)] p-2 sm:p-5 pb-8 sm:pb-16 rounded-sm border border-white/30"
               style={{ zIndex: index + 10, backgroundColor: colors[index % colors.length] }}
             >
               <div className="w-full h-full relative overflow-hidden rounded-sm">
                 <img src={src} alt={`Intro ${index}`} className="w-full h-full object-contain bg-white" />
                 <div className="absolute inset-0 bg-black/5" />
               </div>
-              <div className="absolute bottom-1.5 sm:bottom-3 left-0 w-full text-center px-2">
-                <p className="font-serif-royal italic text-[11px] sm:text-sm font-bold text-pink-950/80 tracking-widest truncate">
+              <div className="absolute bottom-2 sm:bottom-4 left-0 w-full text-center px-2">
+                <p className="font-serif-royal italic text-sm sm:text-xl font-bold text-pink-950/80 tracking-widest truncate">
                   {getFileName(src)}
                 </p>
               </div>
@@ -145,12 +190,86 @@ export const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) =>
       </AnimatePresence>
       
       {/* Sparkles background during animation */}
-      {phase === 'enter' && (
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 text-pink-300 text-xl animate-float-slow">✨</div>
-          <div className="absolute top-1/3 right-1/4 text-blue-300 text-2xl animate-float-delayed">🦋</div>
-          <div className="absolute bottom-1/3 left-1/3 text-purple-300 text-lg animate-float-slow opacity-80">✨</div>
+      {(phase === 'enter' || phase === 'message') && (
+        <div className="absolute inset-0 pointer-events-none z-40">
+          <div className="absolute top-1/4 left-1/4 text-pink-dusty text-xl animate-float-slow">✨</div>
+          <div className="absolute top-1/3 right-1/4 text-olive-light text-2xl animate-float-delayed">🦋</div>
+          <div className="absolute bottom-1/3 left-1/3 text-pink-dusty text-lg animate-float-slow opacity-80">✨</div>
         </div>
+      )}
+
+      {/* Final Message */}
+      <AnimatePresence>
+        {phase === 'message' && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.5 }}
+            className="z-50 absolute inset-0 flex items-center justify-center p-4 sm:p-8 bg-ivory/80 backdrop-blur-md"
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8, y: 50 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 1.1, y: -50 }}
+              transition={{ delay: 0.3, duration: 1.2, type: "spring", bounce: 0.3 }}
+              className="relative w-full max-w-4xl p-8 sm:p-16 rounded-[2rem] sm:rounded-[4rem] border border-white/60 bg-white/50 shadow-[0_10px_40px_rgba(0,0,0,0.1)] text-center overflow-hidden"
+            >
+              {/* Cute soft gradient overlay inside the card */}
+              <div className="absolute inset-0 bg-gradient-to-br from-pink-pale via-ivory to-pink-pale" />
+
+              {/* Decorative floating butterflies */}
+              <motion.div animate={{ y: [0, -20, 0], rotate: [0, -10, 10, 0] }} transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }} className="absolute top-4 left-4 sm:top-10 sm:left-12 text-4xl sm:text-6xl drop-shadow-md">🦋</motion.div>
+              <motion.div animate={{ y: [0, 20, 0], rotate: [0, 15, -5, 0] }} transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }} className="absolute bottom-4 right-4 sm:bottom-12 sm:right-12 text-5xl sm:text-7xl drop-shadow-md">🦋</motion.div>
+              <motion.div animate={{ y: [0, -10, 0], x: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 3.5, ease: "easeInOut" }} className="absolute top-1/2 left-2 sm:left-6 text-2xl sm:text-4xl drop-shadow-md opacity-80">🦋</motion.div>
+              <motion.div animate={{ y: [0, 15, 0], rotate: [0, -20, 0] }} transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut" }} className="absolute top-8 right-6 sm:top-16 sm:right-16 text-3xl sm:text-5xl drop-shadow-md opacity-70">🦋</motion.div>
+
+              <div className="relative z-10 space-y-8 sm:space-y-12">
+                <motion.p 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.0, duration: 1 }}
+                  className="font-serif-royal text-2xl sm:text-4xl lg:text-5xl text-olive-dark drop-shadow-sm font-bold italic"
+                >
+                  11 months have been captured…. 
+                </motion.p>
+                
+                <motion.p 
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 2.2, duration: 1 }}
+                  className="font-serif-royal text-2xl sm:text-4xl lg:text-5xl text-pink-dusty drop-shadow-[0_2px_4px_rgba(255,255,255,0.8)] font-bold italic"
+                >
+                  But the sweetest picture is yet to be revealed.
+                </motion.p>
+
+                <motion.div 
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 3.8, duration: 1.2 }}
+                  className="pt-6 sm:pt-8"
+                >
+                  <p className="font-cinzel text-xl sm:text-3xl lg:text-4xl text-olive-dark drop-shadow-sm font-black leading-relaxed">
+                    Come flutter into our butterfly garden <br className="hidden sm:block"/>
+                    to see our little butterfly at <span className="text-pink-dusty text-4xl sm:text-6xl lg:text-7xl inline-block mx-2 drop-shadow-md animate-pulse">12</span> months 🦋
+                  </p>
+                </motion.div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Skip Intro Button */}
+      {phase !== 'idle' && (
+        <motion.button
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          onClick={onComplete}
+          className="absolute bottom-4 right-4 sm:bottom-8 sm:right-8 z-[300] px-4 py-2 bg-black/20 hover:bg-black/40 backdrop-blur-md rounded-full border border-white/20 text-white/80 hover:text-white text-xs sm:text-sm font-serif-royal transition-all"
+        >
+          Skip Intro ⏭
+        </motion.button>
       )}
     </div>
   );

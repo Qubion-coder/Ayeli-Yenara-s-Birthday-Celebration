@@ -47,7 +47,7 @@ export const AudioPlayer: React.FC = () => {
     <>
       <audio 
         ref={audioRef} 
-        src="/background-music.mp3" 
+        src="/christina perri - a thousand years (lullaby).mp3" 
         loop 
         preload="auto"
       />
