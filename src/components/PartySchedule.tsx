@@ -7,7 +7,7 @@ export const PartySchedule: React.FC = () => {
     {
       time: "6.30 pm",
       title: "Party Begins",
-      description: "Step into our fairytale realm! Welcome drinks, warm greetings & photo sessions.",
+      description: "Step into our magical butterfly garden! Welcome drinks, warm greetings & photo sessions.",
       icon: "✨",
     },
     {

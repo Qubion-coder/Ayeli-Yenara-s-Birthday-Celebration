@@ -28,7 +28,7 @@ export const RsvpModal: React.FC<RsvpModalProps> = ({ isOpen, onClose, onRsvpSuc
 
     try {
       // Google Apps Script Web App URL
-      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxjhnF46qG4ER7hHlev41xQnZqK76ZvxXwDQL7Ie_JhtG-MrABxWtJzhQ61HFvZI422/exec';
+      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbybHBUesgiw6aU1o1-cpl9gjb3iWQBhzR_yxMlq9sCE-Lfx06GoYeiuxACBui7o1HNIYQ/exec';
 
       const payload = {
         guestName,
@@ -38,22 +38,27 @@ export const RsvpModal: React.FC<RsvpModalProps> = ({ isOpen, onClose, onRsvpSuc
         specialNote,
       };
 
-      // We use text/plain to avoid CORS preflight issues with Google Apps Script
-      const response = await fetch(GOOGLE_SCRIPT_URL, {
+      // Use URLSearchParams for x-www-form-urlencoded format
+      const formBody = new URLSearchParams();
+      formBody.append('guestName', payload.guestName);
+      formBody.append('attending', payload.attending ? 'Yes' : 'No');
+      formBody.append('adultsCount', payload.adultsCount.toString());
+      formBody.append('kidsCount', payload.kidsCount.toString());
+      formBody.append('specialNote', payload.specialNote);
+
+      // We use application/x-www-form-urlencoded and no-cors to avoid CORS preflight issues with Google Apps Script
+      await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
+        mode: 'no-cors',
         headers: {
-          'Content-Type': 'text/plain;charset=utf-8',
+          'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: JSON.stringify(payload),
+        body: formBody.toString(),
       });
 
-      const data = await response.json();
-
-      if (data.success) {
-        onRsvpSuccess(payload as any);
-      } else {
-        throw new Error(data.error || 'Failed to save RSVP');
-      }
+      // With no-cors, we get an opaque response so we can't read data.success, 
+      // but if fetch didn't throw a network error, the request was sent successfully!
+      onRsvpSuccess(payload as any);
     } catch (err) {
       console.error('RSVP Submission Error:', err);
       // Fallback for success even if it errors locally, so UI still works
@@ -141,20 +146,13 @@ export const RsvpModal: React.FC<RsvpModalProps> = ({ isOpen, onClose, onRsvpSuc
                   FILL RSVP
                 </h2>
 
-                {/* Animated Live Fairy Icon accent */}
-                <div className="flex justify-center mb-2">
-                  <div className="relative animate-float-slow">
-                    <img src="/fairy.png" alt="fairy" className="w-14 h-auto opacity-80 mix-blend-multiply drop-shadow-md" />
-                    <div className="absolute -top-1 -right-2 text-pink-dusty text-xs animate-pulse">✨</div>
-                    <div className="absolute bottom-0 -left-2 text-olive-light text-[10px] animate-pulse" style={{ animationDelay: '0.5s' }}>✨</div>
-                  </div>
-                </div>
+                {/* Removed Fairy Icon accent */}
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Name */}
                 <div>
-                  <label className="block text-xs font-sans tracking-[0.2em] uppercase text-olive-dark/70 mb-2 font-bold">
+                  <label className="block text-xs font-sans tracking-[0.2em] uppercase text-olive-dark mb-2 font-bold">
                     Name*
                   </label>
                   <input
@@ -162,14 +160,14 @@ export const RsvpModal: React.FC<RsvpModalProps> = ({ isOpen, onClose, onRsvpSuc
                     required
                     value={guestName}
                     onChange={(e) => setGuestName(e.target.value)}
-                    className="w-full px-4 py-3.5 rounded-2xl bg-white/60 backdrop-blur-sm border border-white/80 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] text-olive-dark text-sm focus:outline-none focus:ring-2 focus:ring-olive-light focus:bg-white transition-all"
+                    className="w-full px-4 py-3.5 rounded-2xl bg-white/90 backdrop-blur-sm border border-white/80 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] text-olive-dark text-sm focus:outline-none focus:ring-2 focus:ring-olive-light focus:bg-white transition-all"
                   />
                 </div>
 
                 {/* Number of guests */}
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-sans tracking-[0.2em] uppercase text-olive-dark/70 mb-2 font-bold">
+                    <label className="block text-xs font-sans tracking-[0.2em] uppercase text-olive-dark mb-2 font-bold">
                       Adults*
                     </label>
                     <input
@@ -178,11 +176,11 @@ export const RsvpModal: React.FC<RsvpModalProps> = ({ isOpen, onClose, onRsvpSuc
                       required
                       value={guestsCount}
                       onChange={(e) => setGuestsCount(e.target.value)}
-                      className="w-full px-4 py-3.5 rounded-2xl bg-white/60 backdrop-blur-sm border border-white/80 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] text-olive-dark text-sm focus:outline-none focus:ring-2 focus:ring-olive-light focus:bg-white transition-all"
+                      className="w-full px-4 py-3.5 rounded-2xl bg-white/90 backdrop-blur-sm border border-white/80 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] text-olive-dark text-sm focus:outline-none focus:ring-2 focus:ring-olive-light focus:bg-white transition-all"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-sans tracking-[0.2em] uppercase text-olive-dark/70 mb-2 font-bold">
+                    <label className="block text-xs font-sans tracking-[0.2em] uppercase text-olive-dark mb-2 font-bold">
                       Kids
                     </label>
                     <input
@@ -190,14 +188,14 @@ export const RsvpModal: React.FC<RsvpModalProps> = ({ isOpen, onClose, onRsvpSuc
                       min="0"
                       value={kidsCount}
                       onChange={(e) => setKidsCount(e.target.value)}
-                      className="w-full px-4 py-3.5 rounded-2xl bg-white/60 backdrop-blur-sm border border-white/80 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] text-olive-dark text-sm focus:outline-none focus:ring-2 focus:ring-olive-light focus:bg-white transition-all"
+                      className="w-full px-4 py-3.5 rounded-2xl bg-white/90 backdrop-blur-sm border border-white/80 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] text-olive-dark text-sm focus:outline-none focus:ring-2 focus:ring-olive-light focus:bg-white transition-all"
                     />
                   </div>
                 </div>
 
                 {/* Are you coming? */}
                 <div>
-                  <label className="block text-xs font-sans tracking-[0.2em] uppercase text-olive-dark/70 mb-2 font-bold">
+                  <label className="block text-xs font-sans tracking-[0.2em] uppercase text-olive-dark mb-2 font-bold">
                     Are you coming?*
                   </label>
                   <div className="flex flex-col gap-3">
@@ -206,7 +204,7 @@ export const RsvpModal: React.FC<RsvpModalProps> = ({ isOpen, onClose, onRsvpSuc
                       onClick={() => setAttending(true)}
                       className={`w-full py-3.5 px-5 text-left rounded-2xl transition-all text-sm font-serif-royal italic font-bold border ${attending === true
                           ? 'bg-olive-light text-white border-transparent shadow-[0_10px_20px_rgba(0,0,0,0.1)]'
-                          : 'bg-white/60 border-white/80 text-olive-dark/70 hover:bg-white hover:shadow-sm'
+                          : 'bg-white/90 border-white/80 text-olive-dark hover:bg-white hover:shadow-sm'
                         }`}
                     >
                       Absolutely, wouldn't miss it!
@@ -217,7 +215,7 @@ export const RsvpModal: React.FC<RsvpModalProps> = ({ isOpen, onClose, onRsvpSuc
                       onClick={() => setAttending(false)}
                       className={`w-full py-3.5 px-5 text-left rounded-2xl transition-all text-sm font-serif-royal italic font-bold border ${attending === false
                           ? 'bg-olive-light text-white border-transparent shadow-[0_10px_20px_rgba(0,0,0,0.1)]'
-                          : 'bg-white/60 border-white/80 text-olive-dark/70 hover:bg-white hover:shadow-sm'
+                          : 'bg-white/90 border-white/80 text-olive-dark hover:bg-white hover:shadow-sm'
                         }`}
                     >
                       Can't make it this time.
@@ -227,14 +225,14 @@ export const RsvpModal: React.FC<RsvpModalProps> = ({ isOpen, onClose, onRsvpSuc
 
                 {/* Leave a Wish */}
                 <div>
-                  <label className="block text-[10px] sm:text-xs font-sans tracking-[0.1em] sm:tracking-[0.2em] uppercase text-olive-dark/70 mb-2 font-bold">
+                  <label className="block text-[10px] sm:text-xs font-sans tracking-[0.1em] sm:tracking-[0.2em] uppercase text-olive-dark mb-2 font-bold">
                     Leave a Magical Wish (Optional)
                   </label>
                   <textarea
                     rows={2}
                     value={specialNote}
                     onChange={(e) => setSpecialNote(e.target.value)}
-                    className="w-full px-4 py-3.5 rounded-2xl bg-white/60 backdrop-blur-sm border border-white/80 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] text-olive-dark text-sm focus:outline-none focus:ring-2 focus:ring-olive-light focus:bg-white resize-none transition-all"
+                    className="w-full px-4 py-3.5 rounded-2xl bg-white/90 backdrop-blur-sm border border-white/80 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] text-olive-dark text-sm focus:outline-none focus:ring-2 focus:ring-olive-light focus:bg-white resize-none transition-all"
                   />
                 </div>
 

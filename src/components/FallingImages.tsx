@@ -13,7 +13,6 @@ const PRE_IMAGES = [
   "/pre/9TH MONTH.jpg",
   "/pre/10TH MONTH.jpg",
   "/pre/11TH MONTH.jpg.jpeg",
-  "/pre/HOSPITAL.jpg",
   "/pre/NEW BORN.jpg"
 ];
 

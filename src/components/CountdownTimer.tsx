@@ -95,7 +95,7 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({ targetDate }) =>
       <div className="mt-4 pt-3 border-t border-olive-light/40 text-center">
         <p className="text-[11px] sm:text-xs text-olive-dark/80 font-serif-royal italic flex items-center justify-center gap-1.5">
           <Crown className="w-3.5 h-3.5 text-pink-dusty inline" />
-          <span>Baby Ayeli Yenara's Fairytale Birthday • 6.30 pm</span>
+          <span>Our Little Butterfly's Birthday • 6.30 pm</span>
           <Crown className="w-3.5 h-3.5 text-pink-dusty inline" />
         </p>
       </div>

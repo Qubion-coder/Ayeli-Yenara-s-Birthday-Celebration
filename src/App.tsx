@@ -23,6 +23,20 @@ export default function App() {
   const [isRsvpOpen, setIsRsvpOpen] = useState(false);
   const [userRsvp, setUserRsvp] = useState<RSVP | null>(null);
 
+  const pathName = window.location.pathname.replace('/', '').replace(/-/g, ' ');
+  const capitalizedName = pathName.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+  const urlParams = new URLSearchParams(window.location.search);
+  const prefixParam = urlParams.get('prefix');
+
+  const getFormattedInviteeName = (pref: string | null, name: string) => {
+    if (!name) return null;
+    if (pref === 'Family') return `${name} and Family`;
+    if (pref === 'Dear') return name;
+    return pref ? `${pref} ${name}` : name;
+  };
+
+  const inviteeFullName = getFormattedInviteeName(prefixParam, capitalizedName);
+
   const handleRsvpSuccess = (rsvp: RSVP) => {
     setUserRsvp(rsvp);
   };
@@ -45,7 +59,7 @@ export default function App() {
 
       {/* Section 1: Interactive Intro Animation */}
       {!envelopeOpened && (
-        <IntroAnimation onComplete={() => setEnvelopeOpened(true)} />
+        <IntroAnimation onComplete={() => setEnvelopeOpened(true)} inviteeName={inviteeFullName} />
       )}
 
       {/* Main Scrapbook Wrapper */}
@@ -108,9 +122,16 @@ export default function App() {
                 <div className="absolute inset-0 bg-gradient-to-br from-pink-200/20 via-white/10 to-purple-200/20 rounded-[2.5rem]" />
 
                 <div className="relative z-10 w-full space-y-4">
-                  <p className="font-serif-royal italic text-olive-dark font-bold text-sm sm:text-base tracking-widest uppercase">
-                    Please join us for
-                  </p>
+                  {inviteeFullName ? (
+                    <p className="font-serif-royal italic text-olive-dark font-bold text-lg sm:text-xl tracking-wide text-center">
+                      Dear <span className="text-pink-dusty drop-shadow-sm">{inviteeFullName}</span>,<br/>
+                      <span className="text-sm sm:text-base uppercase tracking-widest mt-2 block">Please join us for</span>
+                    </p>
+                  ) : (
+                    <p className="font-serif-royal italic text-olive-dark font-bold text-sm sm:text-base tracking-widest uppercase text-center">
+                      Please join us for
+                    </p>
+                  )}
                   
                   <div className="space-y-1 py-1">
                     <h1 className="font-cinzel text-3xl sm:text-4xl font-black text-pink-deep drop-shadow-sm leading-tight">
@@ -246,23 +267,25 @@ export default function App() {
             </div>
 
             {/* Footer */}
-            <footer className="mt-20 text-center text-xs text-olive-dark font-serif-royal pb-10 flex flex-col items-center gap-1">
-              <p className="flex items-center justify-center gap-1">
-                <span>Crafted with magic for</span>
-                <Heart className="w-3.5 h-3.5 text-pink-dusty fill-pink-dusty" />
-                <span>Baby Ayeli Yenara</span>
-              </p>
-              <p className="text-olive-dark text-[10px] sm:text-xs mt-2 font-sans tracking-wider">
-                Want a beautiful birthday invitation like this? Create yours with{' '}
-                <a 
-                  target="_blank" 
-                  rel="noreferrer" 
-                  className="text-olive-dark hover:text-olive-light underline transition-colors font-semibold" 
-                  href="https://wa.me/94707819074"
-                >
-                  invitemint
-                </a>
-              </p>
+            <footer className="mt-20 pb-10 flex flex-col items-center w-full px-4">
+              <div className="bg-white/80 backdrop-blur-md px-6 py-5 rounded-3xl border border-white/60 shadow-[0_10px_40px_rgba(0,0,0,0.15)] text-center text-olive-dark font-serif-royal flex flex-col items-center gap-2 w-full max-w-lg">
+                <p className="flex items-center justify-center gap-2 text-sm sm:text-base font-bold">
+                  <span>Crafted with magic for</span>
+                  <Heart className="w-4 h-4 text-pink-dusty fill-pink-dusty" />
+                  <span>Baby Ayeli Yenara</span>
+                </p>
+                <p className="text-olive-dark/90 text-xs sm:text-sm mt-1 font-sans tracking-wider font-medium">
+                  Want a beautiful birthday invitation like this?<br className="sm:hidden" /> Create yours with{' '}
+                  <a 
+                    target="_blank" 
+                    rel="noreferrer" 
+                    className="text-pink-600 hover:text-pink-700 underline transition-colors font-black ml-1" 
+                    href="https://wa.me/94707819074"
+                  >
+                    invitemint
+                  </a>
+                </p>
+              </div>
             </footer>
 
           </div>

@@ -36,7 +36,7 @@ export const GuestbookWishes: React.FC = () => {
         body: JSON.stringify({
           guestName: author || 'Dear Guest',
           relation: relation,
-          tone: 'magical fairytale'
+          tone: 'magical butterfly'
         })
       });
       const data = await res.json();
@@ -90,7 +90,7 @@ export const GuestbookWishes: React.FC = () => {
           <MessageSquareHeart className="w-3.5 h-3.5 text-pink-600" /> Royal Guestbook
         </div>
         <h2 className="font-cinzel text-2xl sm:text-3xl font-bold text-purple-950">
-          Fairytale Birthday Wishes
+          Our Little Butterfly's Birthday Wishes
         </h2>
         <p className="text-xs sm:text-sm text-pink-700 font-serif-royal italic mt-1">
           Leave a magical blessing for Baby Ayeli Yenara's Birthday!
@@ -149,7 +149,7 @@ export const GuestbookWishes: React.FC = () => {
         <div className="mb-3">
           <div className="flex items-center justify-between mb-1">
             <label className="block text-xs font-bold text-purple-900">
-              Your Fairytale Message *
+              Your Butterfly Message *
             </label>
           </div>
 

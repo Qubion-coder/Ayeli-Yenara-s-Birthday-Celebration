@@ -19,7 +19,7 @@ export const LocationMapSection: React.FC<LocationMapSectionProps> = ({
   const createGoogleCalendarLink = () => {
     // 10th October 2026 6:30 PM Sri Lanka Time (UTC+5:30) -> 13:00 UTC to 17:00 UTC
     const title = encodeURIComponent("Baby Ayeli Yenara's Birthday Celebration");
-    const details = encodeURIComponent("Join us for a magical fairytale celebration for Baby Ayeli Yenara at Madu River Reach Hotel, Royal Ballroom!");
+    const details = encodeURIComponent("Join us for a magical butterfly celebration for Baby Ayeli Yenara at Madu River Reach Hotel, Royal Ballroom!");
     const location = encodeURIComponent(`${venueName}, ${address}`);
     return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=20261010T130000Z/20261010T170000Z&details=${details}&location=${location}`;
   };
@@ -30,7 +30,7 @@ export const LocationMapSection: React.FC<LocationMapSectionProps> = ({
       'VERSION:2.0',
       'BEGIN:VEVENT',
       'SUMMARY:Baby Ayeli Yenara Birthday Celebration',
-      'DESCRIPTION:Fairytale birthday celebration for Baby Ayeli Yenara at Madu River Reach Hotel, Royal Ballroom.',
+      'DESCRIPTION:Butterfly birthday celebration for Baby Ayeli Yenara at Madu River Reach Hotel, Royal Ballroom.',
       'LOCATION:' + venueName + ', ' + address,
       'DTSTART:20261010T130000Z',
       'DTEND:20261010T170000Z',

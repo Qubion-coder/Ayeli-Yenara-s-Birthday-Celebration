@@ -125,7 +125,7 @@ export const OrganizerDashboard: React.FC = () => {
                 <Users className="w-5 h-5 text-olive-light" /> Guest List & RSVP Summary
               </h3>
               <p className="text-xs text-olive-dark/80 font-serif-royal">
-                Organizer Portal for Baby Ayeli Yenara's Fairytale Birthday
+                Organizer Portal for Our Little Butterfly's Birthday
               </p>
             </div>
 

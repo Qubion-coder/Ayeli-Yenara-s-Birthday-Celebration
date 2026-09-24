@@ -4,10 +4,10 @@ import { Sparkles } from 'lucide-react';
 
 interface IntroAnimationProps {
   onComplete: () => void;
+  inviteeName?: string | null;
 }
 
 const images = [
-  "/pre/HOSPITAL.jpg",
   "/pre/NEW BORN.jpg",
   "/pre/1ST MONTH.jpg",
   "/pre/2ND MONTH.jpg",
@@ -26,7 +26,7 @@ const getFileName = (path: string) => {
   return path.split('/').pop()?.split('.')[0] || '';
 };
 
-export const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
+export const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete, inviteeName }) => {
   const [phase, setPhase] = useState<'idle' | 'intro_text' | 'enter' | 'message' | 'exit'>('idle');
 
   useEffect(() => {
@@ -45,22 +45,22 @@ export const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) =>
       setPhase('enter');
     }, 4500);
 
-    // Total duration for 13 images:
+    // Total duration for 12 images:
     // duration 2.4s, exit starts at 1.92s
-    // 12 * 1.92 + 2.4 = 25.44s
+    // 11 * 1.92 + 2.4 = 23.52s
     const messageTimer = setTimeout(() => {
       setPhase('message');
-    }, 30500); // 4500 + 26000
+    }, 28500); // 4500 + 24000
 
     // Fade out message and transition
     const exitTimer = setTimeout(() => {
       setPhase('exit');
-    }, 40500);
+    }, 38500);
 
     // Call onComplete after exit animation finishes
     const completeTimer = setTimeout(() => {
       onComplete();
-    }, 41500);
+    }, 39500);
   };
 
   return (
@@ -86,6 +86,11 @@ export const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) =>
           className="z-10 flex flex-col items-center gap-6 sm:gap-8 px-4 text-center"
         >
           <div className="space-y-3">
+            {inviteeName && (
+              <p className="font-serif-royal italic text-3xl sm:text-5xl text-pink-dusty font-bold mb-4 drop-shadow-md">
+                Dear {inviteeName},
+              </p>
+            )}
             <p className="font-cinzel text-xs sm:text-sm tracking-[0.35em] uppercase text-olive-dark font-extrabold drop-shadow-[0_2px_4px_rgba(255,255,255,0.8)]">
               You are warmly invited to
             </p>
