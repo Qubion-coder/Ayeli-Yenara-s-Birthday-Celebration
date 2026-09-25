@@ -117,18 +117,18 @@ export default function App() {
               </div>
               
               {/* Main Invitation Text (positioned perfectly below the photo) */}
-              <div className="absolute top-[43%] sm:top-[50%] left-1/2 -translate-x-1/2 w-[85%] sm:w-[75%] max-w-[420px] text-center z-10 px-5 sm:px-8 py-5 sm:py-8 rounded-[2.5rem] bg-white/50 backdrop-blur-md border border-white/80 shadow-[0_10px_40px_rgba(236,72,153,0.15)] flex flex-col items-center">
+              <div className="absolute top-[48%] sm:top-[50%] left-1/2 -translate-x-1/2 w-[85%] sm:w-[75%] max-w-[420px] text-center z-10 px-5 sm:px-8 py-5 sm:py-8 rounded-[2.5rem] bg-white/50 backdrop-blur-md border border-white/80 shadow-[0_10px_40px_rgba(236,72,153,0.15)] flex flex-col items-center">
                 
                 <div className="absolute inset-0 bg-gradient-to-br from-pink-200/20 via-white/10 to-purple-200/20 rounded-[2.5rem]" />
 
                 <div className="relative z-10 w-full space-y-4">
                   {inviteeFullName ? (
-                    <p className="font-serif-royal italic text-olive-dark font-bold text-lg sm:text-xl tracking-wide text-center">
-                      Dear <span className="text-pink-dusty drop-shadow-sm">{inviteeFullName}</span>,<br/>
-                      <span className="text-sm sm:text-base uppercase tracking-widest mt-2 block">Please join us for</span>
+                    <p className="font-serif-royal italic text-olive-dark font-bold text-base sm:text-lg tracking-wide text-center">
+                      Dear <span className="text-pink-950 font-black drop-shadow-sm">{inviteeFullName}</span>,<br/>
+                      <span className="text-xs sm:text-sm uppercase tracking-widest mt-2 block">Please join us for</span>
                     </p>
                   ) : (
-                    <p className="font-serif-royal italic text-olive-dark font-bold text-sm sm:text-base tracking-widest uppercase text-center">
+                    <p className="font-serif-royal italic text-olive-dark font-bold text-xs sm:text-sm tracking-widest uppercase text-center">
                       Please join us for
                     </p>
                   )}
