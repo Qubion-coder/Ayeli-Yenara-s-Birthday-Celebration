@@ -23,7 +23,8 @@ export default function App() {
   const [isRsvpOpen, setIsRsvpOpen] = useState(false);
   const [userRsvp, setUserRsvp] = useState<RSVP | null>(null);
 
-  const pathName = window.location.pathname.replace('/', '').replace(/-/g, ' ');
+  const decodedPath = decodeURIComponent(window.location.pathname);
+  const pathName = decodedPath.replace(/^\//, '').replace(/-/g, ' ');
   const capitalizedName = pathName.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
   const urlParams = new URLSearchParams(window.location.search);
   const prefixParam = urlParams.get('prefix');
